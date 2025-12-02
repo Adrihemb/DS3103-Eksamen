@@ -1,11 +1,19 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using SportsWorld.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Swagger / OpenAPI via Swashbuckle
+// Register DbContext with SQLite
+builder.Services.AddDbContext<SportsWorldContext>(options =>
+{
+    options.UseSqlite("Data Source=SportsWorld.db");
+});
+
+// Swagger / OpenAPI (via Swashbuckle)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
