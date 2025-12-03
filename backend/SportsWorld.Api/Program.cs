@@ -13,6 +13,15 @@ builder.Services.AddDbContext<SportsWorldContext>(options =>
     options.UseSqlite("Data Source=SportsWorld.db");
 });
 
+// CORS: tillat frontend på http://localhost:5173
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
+
 // Swagger / OpenAPI (via Swashbuckle)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -37,6 +46,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// 🔥 Viktig: CORS før Authorization / MapControllers
+app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 
