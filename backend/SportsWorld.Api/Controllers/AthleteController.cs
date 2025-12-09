@@ -107,5 +107,53 @@ namespace SportsWorld.Api.Controllers
 
             return NoContent();
         }
+        
+        // POST: api/athlete/5/purchase
+        [HttpPost("{id:int}/purchase")]
+        public async Task<ActionResult> PurchaseAthlete(int id)
+        {
+            // Finn athlete
+            var athlete = await _context.Athletes.FindAsync(id);
+            if (athlete == null)
+            {
+                return NotFound("Athlete not found.");
+            }
+
+            if (athlete.PurchaseStatus)
+            {
+                return BadRequest("Athlete is already purchased.");
+            }
+
+            // Finn Finance (den ene raden)
+            var finance = await _context.Finances.FirstOrDefaultAsync();
+            if (finance == null)
+            {
+                return BadRequest("Finance row does not exist.");
+            }
+
+            if (finance.MoneyLeft < athlete.Price)
+            {
+                return BadRequest("Not enough money to purchase this athlete.");
+            }
+
+            // Oppdater økonomi
+            finance.MoneyLeft -= athlete.Price;
+            finance.MoneySpent += athlete.Price;
+            finance.NumberOfPurchases += 1;
+
+            // Oppdater athlete
+            athlete.PurchaseStatus = true;
+
+            await _context.SaveChangesAsync();
+
+            // Returner både ny athlete og oppdatert finance hvis du vil
+            return Ok(new
+            {
+                athlete,
+                finance
+            });
+        }
     }
+    
 }
+
