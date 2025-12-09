@@ -89,10 +89,7 @@ function FinanceDashboard() {
       const result = await response.json();
       const { athlete: updatedAthlete, finance: updatedFinance } = result;
 
-      // Oppdater finance i state
       setFinance(updatedFinance);
-
-      // Oppdater athletes i state
       setAthletes((prev) =>
         prev.map((a) => (a.id === updatedAthlete.id ? updatedAthlete : a))
       );
@@ -103,27 +100,18 @@ function FinanceDashboard() {
     }
   }
 
-  if (loading) {
-    return <p>Laster finansdata...</p>;
-  }
-
-  if (error) {
-    return <p style={{ color: "red" }}>Feil: {error}</p>;
-  }
-
-  if (!finance) {
-    return <p>Ingen finance-data funnet. Opprett en rad i databasen først.</p>;
-  }
+  if (loading) return <p>Laster finansdata...</p>;
+  if (error) return <p style={{ color: "red" }}>Feil: {error}</p>;
+  if (!finance) return <p>Ingen finance-data funnet. Opprett en rad først.</p>;
 
   const availableAthletes = athletes.filter((a) => !a.purchaseStatus);
 
   return (
     <div>
-      <h2>Finansoversikt &amp; Kjøp</h2>
+      <h2>Finansoversikt &amp; kjøp</h2>
 
       {actionMessage && <p>{actionMessage}</p>}
 
-      {/* Section 1: Financial situation */}
       <section>
         <h3>Finansiell situasjon</h3>
         <ul>
@@ -133,7 +121,6 @@ function FinanceDashboard() {
         </ul>
       </section>
 
-      {/* Section 2: Get more money (loan) */}
       <section>
         <h3>Ta opp lån</h3>
         <input
@@ -145,7 +132,6 @@ function FinanceDashboard() {
         <button onClick={handleLoan}>Få penger fra banken</button>
       </section>
 
-      {/* Section 3: Purchase component */}
       <section>
         <h3>Kjøp atleter</h3>
         {availableAthletes.length === 0 ? (
@@ -155,7 +141,7 @@ function FinanceDashboard() {
             {availableAthletes.map((athlete) => (
               <li key={athlete.id}>
                 <strong>{athlete.name}</strong> – {athlete.gender} –{" "}
-                {athlete.price} coins{" "}
+                {athlete.price}{" "}
                 <button onClick={() => handlePurchase(athlete.id)}>Kjøp</button>
               </li>
             ))}
