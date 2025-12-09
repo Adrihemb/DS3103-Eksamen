@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import VenueList from '../components/VenueList';
 import VenueAdmin from '../components/VenueAdmin';
-import ImageUploadService from '../services/imageUploadService'; 
+import ImageUploadService from '../services/imageUploadService';
+import VenueService from '../services/VenueService';
 import type { IVenue, IVenueInput } from '../types/venueTypes';
 
 function VenuePage() {
@@ -10,22 +11,16 @@ function VenuePage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
 
-    const apiBaseUrl = 'http://localhost:5189/api/Venue';       
-
     async function loadVenues(): Promise<void> {
         try {
             setLoading(true);
             setError('');
 
-            const response = await fetch(apiBaseUrl);
-            if (!response.ok) {
-                throw new Error(`Kunne ikke hente arenaer`);
-            }
-
-            const data = await response.json();
+            const data = await VenueService.getAll();
             setVenues(data);
         } catch (err) {
             console.error('Noe gikk galt ved henting av arenaer.', err);
+            setError('Kunne ikke hente arenaer.');
         }
         finally {
             setLoading(false);
@@ -50,23 +45,13 @@ function VenuePage() {
                 finalVenueData.image = uploadResponse.data.fileName;
             }
 
-            const response = await fetch(apiBaseUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(finalVenueData),
-            });
-
-            if (!response.ok) {
-                throw new Error('Kunne ikke opprette arena.');
-            }
-
-            const createdVenue = await response.json();
+            const createdVenue = await VenueService.create(finalVenueData);
 
             setVenues((prev) => [...prev, createdVenue]);
             setSelectedVenue(null);
-            alert('Arena opprettet!');
         } catch (err) {
             console.error('Noe gikk galt ved oppretting av arena.', err);
+            setError('Kunne ikke opprette arena.');
         }
     }
 
@@ -88,15 +73,7 @@ function VenuePage() {
                 finalVenueData.image = uploadResponse.data.fileName;
             }
 
-            const response = await fetch(`${apiBaseUrl}/${venueData.id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(finalVenueData),
-            });
-
-            if (!response.ok) {
-                throw new Error('Kunne ikke oppdatere arena.');
-            }
+            await VenueService.update(finalVenueData);
 
             setVenues((prev) =>
                 prev.map((v) => (v.id === venueData.id ? { ...v,
@@ -108,6 +85,7 @@ function VenuePage() {
             setSelectedVenue(null);
         } catch (err) {
             console.error('Noe gikk galt ved oppdatering av arena.', err);
+            setError('Kunne ikke oppdatere arena.');
         }
     }
 
@@ -120,18 +98,13 @@ function VenuePage() {
         try {
             setError('');
 
-            const response = await fetch(`${apiBaseUrl}/${venueId}`, {
-                method: 'DELETE',
-            });
-
-            if (!response.ok) {
-                throw new Error('Kunne ikke slette arena.');
-            }
+            await VenueService.remove(venueId);
 
             setVenues((prev) => prev.filter((v) => v.id !== venueId));
             setSelectedVenue(null);
         } catch (err) {
             console.error('Noe gikk galt ved sletting av arena.', err);
+            setError('Kunne ikke slette arena.');
         }
     }
 

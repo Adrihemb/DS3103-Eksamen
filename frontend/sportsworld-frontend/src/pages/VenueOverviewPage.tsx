@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import VenueList from "../components/VenueList";
+import VenueService from "../services/VenueService";
 import type { IVenue } from "../types/venueTypes";
 
 function VenueOverviewPage() {
@@ -8,22 +9,16 @@ function VenueOverviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const apiBaseUrl = 'http://localhost:5189/api/Venue';
-
   async function loadVenues(): Promise<void> {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(apiBaseUrl);
-      if (!response.ok) {
-        throw new Error("Kunne ikke hente arenaer.");
-      }
-
-      const data = await response.json();
+      const data = await VenueService.getAll();
       setVenues(data);
     } catch (err) {
       console.error("Noe gikk galt ved henting av arenaer.", err);
+      setError("Kunne ikke hente arenaer.");
     } finally {
       setLoading(false);
     }

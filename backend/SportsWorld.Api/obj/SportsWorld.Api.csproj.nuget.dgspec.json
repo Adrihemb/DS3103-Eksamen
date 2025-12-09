@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mathi\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-    "C:\\Users\\Eier\\Desktop\\DS3013-Eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Eier\\Desktop\\DS3013-Eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Eier\\Desktop\\DS3013-Eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
-        "projectName": "SportsWorld.Api",
-        "projectPath": "C:\\Users\\Eier\\Desktop\\DS3013-Eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
-        "packagesPath": "C:\\Users\\Eier\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eier\\Desktop\\DS3013-Eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Eier\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> origin/feature/finance
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -55,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -99,11 +82,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
->>>>>>> origin/feature/finance
         }
       }
     }
