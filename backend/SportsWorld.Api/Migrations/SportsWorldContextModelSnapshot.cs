@@ -42,7 +42,29 @@ namespace SportsWorld.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Athletes");
+                    b.ToTable("Athletes", (string)null);
+                });
+
+            modelBuilder.Entity("SportsWorld.Api.Models.Venue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Venues", (string)null);
                 });
 #pragma warning restore 612, 618
         }

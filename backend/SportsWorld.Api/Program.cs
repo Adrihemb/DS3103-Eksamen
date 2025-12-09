@@ -47,6 +47,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
 // 🔥 Viktig: CORS før Authorization / MapControllers
 app.UseCors("AllowFrontend");
 
