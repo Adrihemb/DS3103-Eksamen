@@ -10,7 +10,7 @@ using SportsWorld.Api.Data;
 namespace SportsWorld.Api.Migrations
 {
     [DbContext(typeof(SportsWorldContext))]
-    [Migration("20251202125803_InitialCreate")]
+    [Migration("20251210040928_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -46,6 +46,48 @@ namespace SportsWorld.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Athletes");
+                });
+
+            modelBuilder.Entity("SportsWorld.Api.Models.Finance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("MoneyLeft")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("MoneySpent")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("NumberOfPurchases")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Finances");
+                });
+
+            modelBuilder.Entity("SportsWorld.Api.Models.Venue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Venues");
                 });
 #pragma warning restore 612, 618
         }
