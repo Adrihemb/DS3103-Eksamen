@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/emilstjernberg/Downloads/DS3103-Eksamen-main 3/DS3103-Eksamen/backend/SportsWorld.Api/SportsWorld.Api.csproj": {}
+    "/Users/emilstjernberg/Downloads/DS3103-Eksamen/DS3103-Eksamen-main/backend/SportsWorld.Api/SportsWorld.Api.csproj": {}
   },
   "projects": {
-    "/Users/emilstjernberg/Downloads/DS3103-Eksamen-main 3/DS3103-Eksamen/backend/SportsWorld.Api/SportsWorld.Api.csproj": {
+    "/Users/emilstjernberg/Downloads/DS3103-Eksamen/DS3103-Eksamen-main/backend/SportsWorld.Api/SportsWorld.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/emilstjernberg/Downloads/DS3103-Eksamen-main 3/DS3103-Eksamen/backend/SportsWorld.Api/SportsWorld.Api.csproj",
+        "projectUniqueName": "/Users/emilstjernberg/Downloads/DS3103-Eksamen/DS3103-Eksamen-main/backend/SportsWorld.Api/SportsWorld.Api.csproj",
         "projectName": "SportsWorld.Api",
-        "projectPath": "/Users/emilstjernberg/Downloads/DS3103-Eksamen-main 3/DS3103-Eksamen/backend/SportsWorld.Api/SportsWorld.Api.csproj",
+        "projectPath": "/Users/emilstjernberg/Downloads/DS3103-Eksamen/DS3103-Eksamen-main/backend/SportsWorld.Api/SportsWorld.Api.csproj",
         "packagesPath": "/Users/emilstjernberg/.nuget/packages/",
-        "outputPath": "/Users/emilstjernberg/Downloads/DS3103-Eksamen-main 3/DS3103-Eksamen/backend/SportsWorld.Api/obj/",
+        "outputPath": "/Users/emilstjernberg/Downloads/DS3103-Eksamen/DS3103-Eksamen-main/backend/SportsWorld.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/emilstjernberg/.nuget/NuGet/NuGet.Config"

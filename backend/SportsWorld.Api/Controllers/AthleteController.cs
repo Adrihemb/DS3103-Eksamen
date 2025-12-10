@@ -5,8 +5,8 @@ using SportsWorld.Api.Models;
 
 namespace SportsWorld.Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class AthleteController : ControllerBase
     {
         private readonly SportsWorldContext _context;
@@ -16,17 +16,16 @@ namespace SportsWorld.Api.Controllers
             _context = context;
         }
 
-        // GET: api/athlete
+        // GET: api/Athlete
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Athlete>>> GetAllAthletes()
+        public async Task<ActionResult<IEnumerable<Athlete>>> GetAthletes()
         {
-            var athletes = await _context.Athletes.ToListAsync();
-            return Ok(athletes);
+            return await _context.Athletes.ToListAsync();
         }
 
-        // GET: api/athlete/5
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Athlete>> GetAthleteById(int id)
+        // GET: api/Athlete/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Athlete>> GetAthlete(int id)
         {
             var athlete = await _context.Athletes.FindAsync(id);
 
@@ -35,65 +34,55 @@ namespace SportsWorld.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(athlete);
+            return athlete;
         }
 
-        // GET: api/athlete/search?name=leo
-        [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<Athlete>>> GetByName([FromQuery] string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return BadRequest("Name query is required.");
-            }
-
-            var athletes = await _context.Athletes
-                .Where(a => a.Name.ToLower().Contains(name.ToLower()))
-                .ToListAsync();
-
-            return Ok(athletes);
-        }
-
-        // POST: api/athlete
+        // POST: api/Athlete
         [HttpPost]
-        public async Task<ActionResult<Athlete>> CreateAthlete([FromBody] Athlete athlete)
+        public async Task<ActionResult<Athlete>> PostAthlete(Athlete athlete)
         {
+            // Nye utøvere skal være "ikke kjøpt" som default
             athlete.PurchaseStatus = false;
 
             _context.Athletes.Add(athlete);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAthleteById), new { id = athlete.Id }, athlete);
+            return CreatedAtAction(nameof(GetAthlete), new { id = athlete.Id }, athlete);
         }
 
-        // PUT: api/athlete/5
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateAthlete(int id, [FromBody] Athlete updated)
+        // PUT: api/Athlete/5
+        // Brukes både til å redigere og "kjøpe" (purchaseStatus true)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAthlete(int id, Athlete athlete)
         {
-            if (id != updated.Id)
+            if (id != athlete.Id)
             {
-                return BadRequest("Id in URL and body must match.");
+                return BadRequest();
             }
 
-            var existing = await _context.Athletes.FindAsync(id);
-            if (existing == null)
+            _context.Entry(athlete).State = EntityState.Modified;
+
+            try
             {
-                return NotFound();
+                await _context.SaveChangesAsync();
             }
-
-            existing.Name = updated.Name;
-            existing.Gender = updated.Gender;
-            existing.Price = updated.Price;
-            existing.Image = updated.Image;
-            existing.PurchaseStatus = updated.PurchaseStatus;
-
-            await _context.SaveChangesAsync();
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AthleteExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return NoContent();
         }
 
-        // DELETE: api/athlete/5
-        [HttpDelete("{id:int}")]
+        // DELETE: api/Athlete/5
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAthlete(int id)
         {
             var athlete = await _context.Athletes.FindAsync(id);
@@ -106,6 +95,11 @@ namespace SportsWorld.Api.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        private bool AthleteExists(int id)
+        {
+            return _context.Athletes.Any(e => e.Id == id);
         }
     }
 }

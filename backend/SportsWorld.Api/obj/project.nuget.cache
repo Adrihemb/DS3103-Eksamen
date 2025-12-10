@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "37LdJpOqGO0=",
+  "dgSpecHash": "7CAZu8Ettj8=",
   "success": true,
-  "projectFilePath": "/Users/emilstjernberg/Downloads/DS3103-Eksamen-main 3/DS3103-Eksamen/backend/SportsWorld.Api/SportsWorld.Api.csproj",
+  "projectFilePath": "/Users/emilstjernberg/Downloads/DS3103-Eksamen/DS3103-Eksamen-main/backend/SportsWorld.Api/SportsWorld.Api.csproj",
   "expectedPackageFiles": [
     "/Users/emilstjernberg/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/emilstjernberg/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
