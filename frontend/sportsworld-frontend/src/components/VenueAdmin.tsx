@@ -66,10 +66,10 @@ function handleClearClick() {
 const isEditing = !!selectedVenue;
 
 return (
-    <section className="venue-panel">
-        <h2>{isEditing ? "Rediger Arena" : "Legg til Ny Arena"}</h2>
+    <section className="venue-panel" aria-labelledby="venue-form-heading">
+        <h2 id="venue-form-heading">{isEditing ? "Rediger Arena" : "Legg til Ny Arena"}</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} aria-label={isEditing ? "Skjema for å redigere arena" : "Skjema for å opprette ny arena"}>
             <div style={{ marginBottom: '1rem' }}>
                 <label htmlFor="venueName">Navn:</label>
                 <br />
@@ -122,16 +122,30 @@ return (
             </div>
 
             <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                <button type="submit">
+                <button 
+                    type="submit"
+                    aria-label={isEditing ? `Lagre endringer for ${name}` : "Opprett ny arena"}
+                    className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
                     {isEditing ? "Lagre Endringer" : "Opprett Arena"}
                 </button>
 
-                <button type="button" onClick={handleClearClick}>
+                <button 
+                    type="button" 
+                    onClick={handleClearClick}
+                    aria-label="Tøm skjema og fjern valgt arena"
+                    className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                >
                     Tøm skjema
                 </button>
 
                 {isEditing && (
-                    <button type="button" onClick={handleDeleteClick}>
+                    <button 
+                        type="button" 
+                        onClick={handleDeleteClick}
+                        aria-label={`Slett arena ${name} permanent`}
+                        className="focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                    >
                         Slett Arena
                     </button>
                 )}
