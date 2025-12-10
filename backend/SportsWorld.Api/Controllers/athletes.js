@@ -1,4 +1,3 @@
-// src/api/athletes.js
 
 const API_BASE_URL = "http://localhost:5189";
 

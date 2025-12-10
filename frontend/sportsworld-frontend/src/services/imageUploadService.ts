@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { BASE_URL } from "../global";
 
 // Define the expected server response type
 export interface IImageUploadResponse {
@@ -6,7 +7,6 @@ export interface IImageUploadResponse {
 }
 
 const ImageUploadService = (() => {
-  const BASE_URL = "http://localhost:5189/api";
 
   // Uploads an image file to the backend
   const uploadImage = async (

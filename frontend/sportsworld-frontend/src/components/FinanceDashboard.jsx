@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../global";
 
 function FinanceDashboard() {
   const [finance, setFinance] = useState(null);
@@ -9,7 +10,7 @@ function FinanceDashboard() {
   const [actionMessage, setActionMessage] = useState(null);
 
   async function fetchFinance() {
-    const response = await fetch("http://localhost:5189/api/Finance");
+    const response = await fetch(`${BASE_URL}/Finance`);
     if (!response.ok) {
       throw new Error(`Could not load finance. Status: ${response.status}`);
     }
@@ -18,7 +19,7 @@ function FinanceDashboard() {
   }
 
   async function fetchAthletes() {
-    const response = await fetch("http://localhost:5189/api/Athlete");
+    const response = await fetch(`${BASE_URL}/Athlete`);
     if (!response.ok) {
       throw new Error(`Could not load athletes. Status: ${response.status}`);
     }
@@ -50,7 +51,7 @@ function FinanceDashboard() {
     }
 
     try {
-      const response = await fetch("http://localhost:5189/api/Finance/loan", {
+      const response = await fetch(`${BASE_URL}/Finance/loan`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: amountNumber }),
@@ -75,7 +76,7 @@ function FinanceDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5189/api/Athlete/${athleteId}/purchase`,
+        `${BASE_URL}/Athlete/${athleteId}/purchase`,
         {
           method: "POST",
         }

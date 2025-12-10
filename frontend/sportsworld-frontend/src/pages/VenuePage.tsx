@@ -109,26 +109,30 @@ function VenuePage() {
     }
 
     return (
-        <main style={{ padding: '1rem' }}>
-            <h1>Venue administration</h1>
+        <main className="p-4">
+            <h1 className="mb-4 text-2xl font-bold">Venue administration</h1>
 
             {loading && <p>Laster arenaer...</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p className="text-red-600">{error}</p>}
         
             {!loading && (
-                <div className='venue-layout'>
-                    <VenueList
-                        venues={venues}
-                        onSelectVenue={setSelectedVenue}
-                    />
+                <div className="flex gap-4 w-full">
+                    <div className="flex-1">
+                        <VenueList
+                            venues={venues}
+                            onSelectVenue={setSelectedVenue}
+                        />
+                    </div>
 
-                    <VenueAdmin
-                        selectedVenue={selectedVenue}
-                        onCreateVenue={handleCreateVenue}
-                        onUpdateVenue={handleUpdateVenue}
-                        onDeleteVenue={handleDeleteVenue}
-                        onClearSelection={() => setSelectedVenue(null)}
-                    />
+                    <div className="flex-1">
+                        <VenueAdmin
+                            selectedVenue={selectedVenue}
+                            onCreateVenue={handleCreateVenue}
+                            onUpdateVenue={handleUpdateVenue}
+                            onDeleteVenue={handleDeleteVenue}
+                            onClearSelection={() => setSelectedVenue(null)}
+                        />
+                    </div>
                 </div>
             )}
         </main>

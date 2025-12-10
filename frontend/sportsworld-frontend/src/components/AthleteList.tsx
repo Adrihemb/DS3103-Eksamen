@@ -1,4 +1,5 @@
 import type { IAthlete } from "../types/athleteTypes";
+import { IMAGE_URL } from "../global";
 
 interface AthleteListProps {
   athletes: IAthlete[];
@@ -19,7 +20,7 @@ function AthleteList({ athletes, onSelectAthlete }: AthleteListProps) {
             <button type="button" onClick={() => onSelectAthlete(athlete)}>
               {athlete.image && (
                 <img
-                  src={`http://localhost:5189/images/athletes/${athlete.image}`}
+                  src={`${IMAGE_URL}/athletes/${athlete.image}`}
                   alt={athlete.name}
                   style={{
                     width: "40px",

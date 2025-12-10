@@ -66,12 +66,12 @@ function handleClearClick() {
 const isEditing = !!selectedVenue;
 
 return (
-    <section className="venue-panel" aria-labelledby="venue-form-heading">
-        <h2 id="venue-form-heading">{isEditing ? "Rediger Arena" : "Legg til Ny Arena"}</h2>
+    <section className="p-4 border rounded">
+        <h2 className="mb-4 font-bold">{isEditing ? "Rediger Arena" : "Legg til Ny Arena"}</h2>
 
-        <form onSubmit={handleSubmit} aria-label={isEditing ? "Skjema for å redigere arena" : "Skjema for å opprette ny arena"}>
-            <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="venueName">Navn:</label>
+        <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+                <label htmlFor="venueName" className="mb-2">Navn:</label>
                 <br />
                 <input
                     id="venueName"
@@ -81,11 +81,12 @@ return (
                         setName(e.target.value)
                     }
                     required
+                    className="border p-2 rounded w-full"
                 />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="venueCapacity">Kapasitet:</label>
+            <div className="mb-4">
+                <label htmlFor="venueCapacity" className="mb-2">Kapasitet:</label>
                 <br />
                 <input
                     id="venueCapacity"
@@ -96,11 +97,12 @@ return (
                     }
                     required
                     min={1}
+                    className="border p-2 rounded w-full"
                 />
             </div>
 
-            <div style={{ marginBottom: '1rem' }}>
-                <label htmlFor="venueImage">Bilde (valgfritt):</label>
+            <div className="mb-4">
+                <label htmlFor="venueImage" className="mb-2">Bilde (valgfritt):</label>
                 <br />
                 <input
                     id="venueImage"
@@ -113,39 +115,26 @@ return (
                             setImage(file.name);
                         }
                     }}
+                    className="border p-2 rounded w-full"
                 />
                 {image && !imageFile && (
-                    <p style={{ marginTop: '0.5rem' }}>
+                    <p className="mb-2">
                         Nåværende bilde: <code>{image}</code>
                     </p>
                 )}  
             </div>
 
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                <button 
-                    type="submit"
-                    aria-label={isEditing ? `Lagre endringer for ${name}` : "Opprett ny arena"}
-                    className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
+            <div className="flex gap-4">
+                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
                     {isEditing ? "Lagre Endringer" : "Opprett Arena"}
                 </button>
 
-                <button 
-                    type="button" 
-                    onClick={handleClearClick}
-                    aria-label="Tøm skjema og fjern valgt arena"
-                    className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-                >
+                <button type="button" onClick={handleClearClick} className="border px-4 py-2 rounded">
                     Tøm skjema
                 </button>
 
                 {isEditing && (
-                    <button 
-                        type="button" 
-                        onClick={handleDeleteClick}
-                        aria-label={`Slett arena ${name} permanent`}
-                        className="focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-                    >
+                    <button type="button" onClick={handleDeleteClick} className="bg-red-600 text-white px-4 py-2 rounded">
                         Slett Arena
                     </button>
                 )}

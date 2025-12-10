@@ -7,27 +7,22 @@ interface VenueListProps {
 
 function VenueList({ venues, onSelectVenue }: VenueListProps) {
   if (venues.length === 0) {
-    return <p role="status" aria-live="polite">Ingen arenaer funnet.</p>;
+    return <p>Ingen arenaer funnet.</p>;
   }
 
   return (
-    <section className="venue-list" aria-labelledby="venue-list-heading">
-      <h2 id="venue-list-heading">Arenaer</h2>
-      <ul role="list">
+    <div className="p-4 border rounded">
+      <h2 className="mb-4 font-bold">Arenaer</h2>
+      <ul>
         {venues.map((venue) => (
-          <li key={venue.id}>
-            <button 
-              type="button" 
-              onClick={() => onSelectVenue(venue)}
-              aria-label={`Velg ${venue.name}, kapasitet ${venue.capacity.toLocaleString()} personer`}
-              className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
+          <li key={venue.id} className="mb-2">
+            <button type="button" onClick={() => onSelectVenue(venue)} className="border p-2 rounded w-full">
               <strong>{venue.name}</strong> – Kapasitet: {venue.capacity.toLocaleString()}
             </button>
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 }
 

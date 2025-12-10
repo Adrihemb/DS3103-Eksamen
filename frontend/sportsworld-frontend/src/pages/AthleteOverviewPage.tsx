@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AthleteService from "../services/AthleteService";
 import type { IAthlete } from "../types/athleteTypes";
+import { IMAGE_URL } from "../global";
 
 function AthleteOverviewPage() {
   const [athletes, setAthletes] = useState<IAthlete[]>([]);
@@ -120,7 +121,7 @@ function AthleteOverviewPage() {
           <div className="athlete-grid">
             {filteredAthletes.map((athlete) => {
               const imageUrl = athlete.image
-                ? `http://localhost:5189/images/athletes/${athlete.image}`
+                ? `${IMAGE_URL}/athletes/${athlete.image}`
                 : undefined;
 
               return (
