@@ -1,4 +1,4 @@
-/* {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -88,4 +88,39 @@ textarea:focus {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-}  */
+}
+
+.athlete-layout {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.athlete-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.athlete-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.athlete-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.athlete-overview {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
