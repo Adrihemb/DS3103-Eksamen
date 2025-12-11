@@ -14,14 +14,14 @@ namespace SportsWorld.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveImage( IFormFile file)
+        public IActionResult SaveImage(IFormFile file, [FromQuery] string folder = "venues")
         {
             if (file == null || file.Length == 0)
             {
                 return BadRequest("No file uploaded.");
             }
 
-            string uploadsFolder = Path.Combine(hosting.WebRootPath, "images", "venues");
+            string uploadsFolder = Path.Combine(hosting.WebRootPath, "images", folder);
 
             if (!Directory.Exists(uploadsFolder))
             {
