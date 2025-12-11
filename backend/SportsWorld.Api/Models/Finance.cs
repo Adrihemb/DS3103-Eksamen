@@ -15,5 +15,8 @@ namespace SportsWorld.Api.Models
 
         // Total money spent so far
         public decimal MoneySpent { get; set; }
+
+        // Amount of money borrowed from the bank (debt)
+        public decimal AmountBorrowed { get; set; }
     }
 }

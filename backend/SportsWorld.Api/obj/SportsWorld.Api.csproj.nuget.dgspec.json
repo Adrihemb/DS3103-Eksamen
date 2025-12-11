@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {}
+    "C:\\Users\\Eier\\Desktop\\DS3103-Eksamen-2\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {
+    "C:\\Users\\Eier\\Desktop\\DS3103-Eksamen-2\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Eier\\Desktop\\DS3103-Eksamen-2\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
         "projectName": "SportsWorld.Api",
-        "projectPath": "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
-        "packagesPath": "C:\\Users\\mathi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\obj\\",
+        "projectPath": "C:\\Users\\Eier\\Desktop\\DS3103-Eksamen-2\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
+        "packagesPath": "C:\\Users\\Eier\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Eier\\Desktop\\DS3103-Eksamen-2\\DS3103-Eksamen\\backend\\SportsWorld.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mathi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Eier\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

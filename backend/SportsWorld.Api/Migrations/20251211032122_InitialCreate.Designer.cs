@@ -10,8 +10,8 @@ using SportsWorld.Api.Data;
 namespace SportsWorld.Api.Migrations
 {
     [DbContext(typeof(SportsWorldContext))]
-    [Migration("20251209160246_AddFinanceTable")]
-    partial class AddFinanceTable
+    [Migration("20251211032122_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,62 @@ namespace SportsWorld.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Athletes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Gender = "Male",
+                            Image = "https://example.com/messi.jpg",
+                            Name = "Lionel Messi",
+                            Price = 100,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Gender = "Male",
+                            Image = "https://example.com/ronaldo.jpg",
+                            Name = "Cristiano Ronaldo",
+                            Price = 95,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Gender = "Male",
+                            Image = "https://example.com/haaland.jpg",
+                            Name = "Erling Haaland",
+                            Price = 90,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Gender = "Male",
+                            Image = "https://example.com/mbappe.jpg",
+                            Name = "Kylian Mbappé",
+                            Price = 92,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Gender = "Female",
+                            Image = "https://example.com/ada-hegerberg.jpg",
+                            Name = "Ada Hegerberg",
+                            Price = 88,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Gender = "Female",
+                            Image = "https://example.com/alexia.jpg",
+                            Name = "Alexia Putellas",
+                            Price = 89,
+                            PurchaseStatus = false
+                        });
                 });
 
             modelBuilder.Entity("SportsWorld.Api.Models.Finance", b =>
