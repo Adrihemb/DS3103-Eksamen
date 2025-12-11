@@ -11,12 +11,12 @@ function VenueList({ venues, onSelectVenue }: VenueListProps) {
   }
 
   return (
-    <div className="venue-list">
-      <h2>Arenaer</h2>
+    <div className="p-4 border rounded">
+      <h2 className="mb-4 font-bold">Arenaer</h2>
       <ul>
         {venues.map((venue) => (
-          <li key={venue.id}>
-            <button type="button" onClick={() => onSelectVenue(venue)}>
+          <li key={venue.id} className="mb-2">
+            <button type="button" onClick={() => onSelectVenue(venue)} className="border p-2 rounded w-full">
               <strong>{venue.name}</strong> – Kapasitet: {venue.capacity.toLocaleString()}
             </button>
           </li>

@@ -1,4 +1,3 @@
-
 const API_BASE_URL = "http://localhost:5189";
 
 export async function getAthletes() {

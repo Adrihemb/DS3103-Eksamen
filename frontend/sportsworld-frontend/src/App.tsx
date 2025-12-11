@@ -1,56 +1,53 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import AthleteList from "./components/AthleteList.jsx";
-import AdminAthletes from "./components/AdminAthletes.jsx";
-import RegisterAthlete from "./components/RegisterAthlete.jsx";
+import AthletePage from "./pages/AthletePage";
+import AthleteOverviewPage from "./pages/AthleteOverviewPage";
 import VenuePage from "./pages/VenuePage";
 import VenueOverviewPage from "./pages/VenueOverviewPage";
-import FinanceDashboard from "./pages/FinanceDashboard";
+import FinanceDashboard from "./components/FinanceDashboard";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        <h1 className="text-center py-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-3xl font-bold m-0">
+      <div>
+        <h1 className="p-4 bg-blue-600 text-white text-center text-3xl">
           SportsWorld
         </h1>
 
-        <nav className="px-4 py-3 border-b-2 border-gray-300 flex gap-4 flex-wrap bg-white shadow-sm">
-          <Link to="/" className="px-4 py-2 no-underline text-gray-800 hover:bg-gray-100 rounded transition-colors">
-            Finance
+        <nav className="p-4 border-b mb-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-gray-100">
+          <Link to="/" className="border p-2 rounded bg-white hover:bg-gray-200">
+            Dashboard
           </Link>
-          <Link to="/athletes" className="px-4 py-2 no-underline text-gray-800 hover:bg-gray-100 rounded transition-colors">
+          <Link to="/athletes" className="border p-2 rounded bg-white hover:bg-gray-200">
             Athletes (kjøp)
           </Link>
-          <Link to="/athletes/admin" className="px-4 py-2 no-underline text-gray-800 hover:bg-gray-100 rounded transition-colors">
+          <Link to="/athletes/admin" className="border p-2 rounded bg-white hover:bg-gray-200">
             Athletes (admin)
           </Link>
-          <Link to="/athletes/register" className="px-4 py-2 no-underline text-gray-800 hover:bg-gray-100 rounded transition-colors">
+          <Link to="/athletes/register" className="border p-2 rounded bg-white hover:bg-gray-200">
             Athletes (registrer)
           </Link>
-          <Link to="/venues" className="px-4 py-2 no-underline text-gray-800 hover:bg-gray-100 rounded transition-colors">
+          <Link to="/venues" className="border p-2 rounded bg-white hover:bg-gray-200">
             Venues (oversikt)
           </Link>
-          <Link to="/venues/admin" className="px-4 py-2 no-underline text-gray-800 hover:bg-gray-100 rounded transition-colors">
+          <Link to="/venues/admin" className="border p-2 rounded bg-white hover:bg-gray-200">
             Venues (admin)
           </Link>
         </nav>
 
-        <main className="p-8 max-w-7xl mx-auto">
+        <main>
           <Routes>
             <Route path="/" element={<FinanceDashboard />} />
-            <Route path="/athletes" element={<AthleteList />} />
-            <Route path="/athletes/admin" element={<AdminAthletes />} />
-            <Route path="/athletes/register" element={<RegisterAthlete />} />
+            <Route path="/athletes" element={<AthleteOverviewPage />} />
+            <Route path="/athletes/admin" element={<AthletePage />} />
+            <Route path="/athletes/register" element={<AthleteOverviewPage />} />
             <Route path="/venues" element={<VenueOverviewPage />} />
             <Route path="/venues/admin" element={<VenuePage />} />
             <Route 
               path="*" 
               element={
-                <div className="text-center p-8 bg-white rounded-lg shadow">
-                  <h2 className="text-2xl font-bold mb-4">404 - Side ikke funnet</h2>
-                  <p className="mb-4">
-                    <Link to="/" className="text-blue-600 hover:underline">Tilbake til Dashboard</Link>
-                  </p>
+                <div className="p-4">
+                  <h2 className="mb-4">404 - Side ikke funnet</h2>
+                  <Link to="/" className="text-blue-600">Tilbake til Dashboard</Link>
                 </div>
               } 
             />

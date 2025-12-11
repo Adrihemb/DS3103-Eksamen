@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { BASE_URL } from "../global";
 
 // Define the expected server response type
 export interface IImageUploadResponse {
@@ -6,18 +7,18 @@ export interface IImageUploadResponse {
 }
 
 const ImageUploadService = (() => {
-  const BASE_URL = "http://localhost:5189/api";
 
   // Uploads an image file to the backend
   const uploadImage = async (
-    image: File
+    image: File,
+    folder: string = "venues"
   ): Promise<AxiosResponse<IImageUploadResponse>> => {
     const formData = new FormData();
     formData.append("file", image);
 
     try {
       const result = await axios.post<IImageUploadResponse>(
-        `${BASE_URL}/UploadImage`,
+        `${BASE_URL}/UploadImage?folder=${folder}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
