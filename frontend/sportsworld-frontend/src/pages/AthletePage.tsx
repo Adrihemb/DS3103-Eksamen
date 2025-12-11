@@ -115,26 +115,30 @@ function AthletePage() {
   }
 
   return (
-    <main style={{ padding: "1rem" }}>
-      <h1>Idrettsutøver administrasjon</h1>
+    <main className="p-4">
+      <h1 className="mb-4 text-2xl font-bold">Idrettsutøver administrasjon</h1>
 
       {loading && <p>Laster idrettsutøvere...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-red-600">{error}</p>}
 
       {!loading && (
-        <div className="athlete-layout">
-          <AthleteList
-            athletes={athletes}
-            onSelectAthlete={setSelectedAthlete}
-          />
+        <div className="flex gap-4 w-full">
+          <div className="flex-1">
+            <AthleteList
+              athletes={athletes}
+              onSelectAthlete={setSelectedAthlete}
+            />
+          </div>
 
-          <AthleteAdmin
-            selectedAthlete={selectedAthlete}
-            onCreateAthlete={handleCreateAthlete}
-            onUpdateAthlete={handleUpdateAthlete}
-            onDeleteAthlete={handleDeleteAthlete}
-            onClearSelection={() => setSelectedAthlete(null)}
-          />
+          <div className="flex-1">
+            <AthleteAdmin
+              selectedAthlete={selectedAthlete}
+              onCreateAthlete={handleCreateAthlete}
+              onUpdateAthlete={handleUpdateAthlete}
+              onDeleteAthlete={handleDeleteAthlete}
+              onClearSelection={() => setSelectedAthlete(null)}
+            />
+          </div>
         </div>
       )}
     </main>

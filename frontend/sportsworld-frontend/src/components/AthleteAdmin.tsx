@@ -78,12 +78,12 @@ function AthleteAdmin({
   const isEditing = !!selectedAthlete;
 
   return (
-    <section className="athlete-panel">
-      <h2>{isEditing ? "Rediger Idrettsutøver" : "Legg til Ny Idrettsutøver"}</h2>
+    <section className="p-4 border rounded">
+      <h2 className="mb-4 font-bold">{isEditing ? "Rediger Idrettsutøver" : "Legg til Ny Idrettsutøver"}</h2>
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athleteName">Navn:</label>
+        <div className="mb-4">
+          <label htmlFor="athleteName" className="mb-2">Navn:</label>
           <br />
           <input
             id="athleteName"
@@ -93,11 +93,12 @@ function AthleteAdmin({
               setName(e.target.value)
             }
             required
+            className="border p-2 rounded w-full"
           />
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athleteGender">Kjønn:</label>
+        <div className="mb-4">
+          <label htmlFor="athleteGender" className="mb-2">Kjønn:</label>
           <br />
           <select
             id="athleteGender"
@@ -105,6 +106,7 @@ function AthleteAdmin({
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setGender(e.target.value)
             }
+            className="border p-2 rounded w-full"
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -112,8 +114,8 @@ function AthleteAdmin({
           </select>
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athletePrice">Pris (coins):</label>
+        <div className="mb-4">
+          <label htmlFor="athletePrice" className="mb-2">Pris (coins):</label>
           <br />
           <input
             id="athletePrice"
@@ -124,11 +126,12 @@ function AthleteAdmin({
             }
             min="0"
             required
+            className="border p-2 rounded w-full"
           />
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athleteImage">Bilde (valgfritt):</label>
+        <div className="mb-4">
+          <label htmlFor="athleteImage" className="mb-2">Bilde (valgfritt):</label>
           <br />
           <input
             id="athleteImage"
@@ -141,15 +144,16 @@ function AthleteAdmin({
                 setImage(file.name);
               }
             }}
+            className="border p-2 rounded w-full"
           />
           {image && !imageFile && (
-            <p style={{ marginTop: "0.5rem" }}>
+            <p className="mb-2">
               Nåværende bilde: <code>{image}</code>
             </p>
           )}
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
+        <div className="mb-4">
           <label htmlFor="athletePurchaseStatus">
             <input
               id="athletePurchaseStatus"
@@ -163,18 +167,18 @@ function AthleteAdmin({
           </label>
         </div>
 
-        <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button type="submit">
-            {isEditing ? "Oppdater" : "Lag"}
+        <div className="flex gap-4">
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+            {isEditing ? "Lagre Endringer" : "Opprett Idrettsutøver"}
           </button>
+
+          <button type="button" onClick={handleClearClick} className="border px-4 py-2 rounded">
+            Tøm skjema
+          </button>
+
           {isEditing && (
-            <button type="button" onClick={handleDeleteClick}>
-              Slett
-            </button>
-          )}
-          {isEditing && (
-            <button type="button" onClick={handleClearClick}>
-              Avbryt
+            <button type="button" onClick={handleDeleteClick} className="bg-red-600 text-white px-4 py-2 rounded">
+              Slett Idrettsutøver
             </button>
           )}
         </div>

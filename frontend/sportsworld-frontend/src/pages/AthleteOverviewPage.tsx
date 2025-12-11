@@ -85,40 +85,39 @@ function AthleteOverviewPage() {
     .reduce((sum, a) => sum + a.price, 0);
 
   return (
-    <main className="athlete-overview">
-      <h1>Idrettsutøvere</h1>
+    <main className="p-4">
+      <h1 className="mb-4 text-2xl font-bold">Idrettsutøvere</h1>
 
-      <div style={{ marginBottom: "1rem" }}>
-        <label htmlFor="athleteSearch">Søk etter idrettsutøver: </label>
-        <br />
+      <div className="mb-4">
+        <label htmlFor="athleteSearch" className="mb-2 block">Søk etter idrettsutøver: </label>
         <input
           id="athleteSearch"
           type="text"
           placeholder="Søk etter idrettsutøvere..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          style={{ padding: "0.5rem", minWidth: "200px", marginRight: "1rem" }}
+          className="border p-2 rounded w-full mb-4"
         />
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          style={{ padding: "0.5rem", marginRight: "1rem" }}
+          className="border p-2 rounded w-full mb-4"
         >
           <option value="all">Alle</option>
           <option value="available">Kun tilgjengelige</option>
           <option value="purchased">Kun kjøpte</option>
         </select>
-        <span style={{ fontWeight: "bold" }}>
+        <p className="font-bold">
           Coins brukt: {totalCoinsSpent}
-        </span>
+        </p>
       </div>
 
       {loading && <p>Laster idrettsutøvere...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="text-red-600">{error}</p>}
 
       {!loading && !error && (
         <>
-          <div className="athlete-grid">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {filteredAthletes.map((athlete) => {
               const imageUrl = athlete.image
                 ? `${IMAGE_URL}/athletes/${athlete.image}`
@@ -127,68 +126,41 @@ function AthleteOverviewPage() {
               return (
                 <article
                   key={athlete.id}
-                  className="athlete-card"
-                  style={{
-                    border: "1px solid #ddd",
-                    borderRadius: "8px",
-                    padding: "1rem",
-                    textAlign: "center",
-                  }}
+                  className="border rounded p-4 flex flex-col"
                 >
                   {imageUrl && (
                     <img
                       src={imageUrl}
                       alt={`Bilde av ${athlete.name}`}
-                      className="athlete-image"
-                      style={{
-                        width: "120px",
-                        height: "120px",
-                        borderRadius: "50%",
-                        marginBottom: "0.5rem",
-                        objectFit: "cover",
-                      }}
+                      className="w-full rounded mb-2"
                     />
                   )}
-                  <h3>{athlete.name}</h3>
-                  <p>{athlete.gender} – {athlete.price} coins</p>
-                  <p>
-                    Status:{" "}
-                    <strong>
-                      {athlete.purchaseStatus ? "Kjøpt" : "Tilgjengelig"}
-                    </strong>
-                  </p>
-                  <div style={{ marginTop: "0.5rem" }}>
-                    {!athlete.purchaseStatus ? (
-                      <button
-                        onClick={() => handleBuy(athlete)}
-                        style={{
-                          padding: "0.5rem 1rem",
-                          borderRadius: "6px",
-                          border: "none",
-                          cursor: "pointer",
-                          backgroundColor: "#28a745",
-                          color: "white",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Kjøp
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleSell(athlete)}
-                        style={{
-                          padding: "0.5rem 1rem",
-                          borderRadius: "6px",
-                          border: "none",
-                          cursor: "pointer",
-                          backgroundColor: "#dc3545",
-                          color: "white",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Selg
-                      </button>
-                    )}
+                  <div className="mt-auto">
+                    <h3 className="mb-2 text-lg font-bold">{athlete.name}</h3>
+                    <p className="text-base">{athlete.gender} – {athlete.price} coins</p>
+                    <p className="text-sm mb-4">
+                      Status:{" "}
+                      <strong>
+                        {athlete.purchaseStatus ? "Kjøpt" : "Tilgjengelig"}
+                      </strong>
+                    </p>
+                    <div>
+                      {!athlete.purchaseStatus ? (
+                        <button
+                          onClick={() => handleBuy(athlete)}
+                          className="bg-green-600 text-white px-4 py-2 rounded w-full"
+                        >
+                          Kjøp
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleSell(athlete)}
+                          className="bg-red-600 text-white px-4 py-2 rounded w-full"
+                        >
+                          Selg
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </article>
               );
@@ -196,7 +168,7 @@ function AthleteOverviewPage() {
           </div>
 
           {filteredAthletes.length === 0 && (
-            <p style={{ textAlign: "center", marginTop: "2rem" }}>
+            <p className="text-center mt-8">
               Fant ingen idrettsutøvere.
             </p>
           )}
