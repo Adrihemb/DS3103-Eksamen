@@ -37,6 +37,22 @@ namespace SportsWorld.Api.Controllers
             return athlete;
         }
 
+        // GET: api/Athlete/search?name=someName
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Athlete>>> GetByName([FromQuery] string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return BadRequest("Name query is required.");
+            }
+
+            var athletes = await _context.Athletes
+                .Where(a => a.Name.ToLower().Contains(name.ToLower()))
+                .ToListAsync();
+
+            return Ok(athletes);
+        }
+
         // POST: api/Athlete
         [HttpPost]
         public async Task<ActionResult<Athlete>> PostAthlete(Athlete athlete)

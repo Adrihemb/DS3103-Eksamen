@@ -516,7 +516,6 @@ C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\ob
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\scopedcss\bundle\SportsWorld.Api.styles.css
-C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\compressed\ecm879w3sb-{0}-idjv6xozi8-idjv6xozi8.gz
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\staticwebassets.development.json
@@ -528,3 +527,5 @@ C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\ob
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\SportsWorld.Api.pdb
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\SportsWorld.Api.genruntimeconfig.cache
 C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\ref\SportsWorld.Api.dll
+C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\compressed\ecm879w3sb-{0}-fpsrap46fp-fpsrap46fp.gz
+C:\Users\Eier\Desktop\DS3103-Eksamen-2\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\compressed\81p5pmbbvv-{0}-9jwcth2bxa-9jwcth2bxa.gz
