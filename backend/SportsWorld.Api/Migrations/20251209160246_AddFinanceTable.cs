@@ -24,6 +24,21 @@ namespace SportsWorld.Api.Migrations
                 {
                     table.PrimaryKey("PK_Finances", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Venues",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Capacity = table.Column<int>(type: "INTEGER", nullable: false),
+                    Image = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Venues", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -31,6 +46,9 @@ namespace SportsWorld.Api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Finances");
+
+            migrationBuilder.DropTable(
+                name: "Venues");
         }
     }
 }

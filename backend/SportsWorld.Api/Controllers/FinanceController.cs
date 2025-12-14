@@ -128,7 +128,9 @@ namespace SportsWorld.Api.Controllers
                 return BadRequest("Finance row does not exist.");
             }
 
+            // Add loan amount to both MoneyLeft and AmountBorrowed (debt tracking)
             finance.MoneyLeft += request.Amount;
+            finance.AmountBorrowed += request.Amount;
 
             await _context.SaveChangesAsync();
 
