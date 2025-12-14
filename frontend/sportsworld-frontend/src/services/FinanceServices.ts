@@ -22,10 +22,32 @@ function handleAxiosError(err: unknown): never {
   throw err as Error;
 }
 
+export async function getAllFinances(): Promise<Finance[]> {
+  try {
+    const res = await api.get<Finance[]>("/Finance");
+    return res.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+}
+
+export async function getFinanceByDepartment(department: string): Promise<Finance> {
+  try {
+    const res = await api.get<Finance>(`/Finance/department/${encodeURIComponent(department)}`);
+    return res.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+}
+
 export async function getFinance(): Promise<Finance> {
   try {
     const res = await api.get<Finance>("/Finance");
-    return res.data;
+    const finances = Array.isArray(res.data) ? res.data : [res.data];
+    if (finances.length === 0) {
+      throw new Error("No finance data found");
+    }
+    return finances[0];
   } catch (err) {
     handleAxiosError(err);
   }
