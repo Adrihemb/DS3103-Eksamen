@@ -1,5 +1,5 @@
 //Form component for creating, editing and deleting venues
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { IVenue, IVenueInput } from "../types/venueTypes";
 
 interface VenueAdminProps {
@@ -16,6 +16,7 @@ function VenueAdmin({ selectedVenue, onCreateVenue, onUpdateVenue, onDeleteVenue
   const [capacity, setCapacity] = useState<string>("");
   const [image, setImage] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   //Populate form fields when a venue is selected for editing
   useEffect(() => {
@@ -68,6 +69,13 @@ function handleDeleteClick() {
 
 //Clears the form inputs and selection
 function handleClearClick() {
+    setName("");
+    setCapacity("");
+    setImage("");
+    setImageFile(null);
+    if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+    }
     onClearSelection();
 } 
 
@@ -117,6 +125,7 @@ return (
                 <label htmlFor="venueImage" className="mb-2">Image (optional):</label>
                 <br />
                 <input
+                    ref={fileInputRef}
                     id="venueImage"
                     type="file"
                     accept="image/*"

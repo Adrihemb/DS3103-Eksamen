@@ -130,6 +130,17 @@ namespace SportsWorld.Api.Data
                     Image = "st-james-park.jpg"
                 }
             );
+
+            modelBuilder.Entity<Finance>().HasData(
+                new Finance
+                {
+                    Id = 1,
+                    MoneyLeft = 1000,
+                    NumberOfPurchases = 0,
+                    MoneySpent = 0,
+                    AmountBorrowed = 0
+                }
+            );
         }
     }
 }
