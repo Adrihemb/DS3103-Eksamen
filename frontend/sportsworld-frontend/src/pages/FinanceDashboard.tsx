@@ -117,7 +117,7 @@ const FinanceDashboard: React.FC = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="finance-loading">
+      <div className="px-6 py-8">
         <p className="text-gray-500">Loading finance data...</p>
       </div>
     );
@@ -126,8 +126,8 @@ const FinanceDashboard: React.FC = () => {
   // Error state
   if (error) {
     return (
-      <div className="finance-error">
-        <p className="finance-error-text">Error: {error}</p>
+      <div className="px-6 py-8">
+        <p className="text-red-600 font-semibold">Error: {error}</p>
       </div>
     );
   }
@@ -135,8 +135,8 @@ const FinanceDashboard: React.FC = () => {
   // No finance data state
   if (!finance) {
     return (
-      <div className="finance-no-data">
-        <p className="finance-warning">
+      <div className="px-6 py-8">
+        <p className="rounded-md border border-yellow-300 bg-yellow-50 px-4 py-3 text-sm text-yellow-800">
           No finance row found. Create one via Swagger first.
         </p>
       </div>
@@ -154,29 +154,29 @@ const FinanceDashboard: React.FC = () => {
   const purchasedAthletes = athletes.filter((a) => a.purchaseStatus);
 
   return (
-    <div className="finance-container">
+    <div className="px-6 py-8 max-w-6xl mx-auto">
       {/* Header – matches Athletes page visually */}
-      <div className="finance-header-layout">
+      <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="finance-header">
+          <h1 className="text-2xl font-semibold text-gray-900">
             Finance dashboard
           </h1>
-          <p className="finance-subheader">
+          <p className="text-sm text-gray-500">
             Overview of coins, purchases and available athletes.
           </p>
         </div>
-        <div className="finance-header-right">
-          <p className="finance-coins-spent">
+        <div className="text-right">
+          <p className="text-sm font-medium text-gray-700">
             Coins spent:{" "}
-            <span className="finance-coins-spent-value">
+            <span className="font-semibold text-purple-600">
               {finance.moneySpent}
             </span>
           </p>
-          <p className="finance-coins-left">Coins left: {finance.moneyLeft}</p>
-          <div className="finance-reset-margin">
+          <p className="text-xs text-gray-400">Coins left: {finance.moneyLeft}</p>
+          <div className="mt-2">
             <button
               onClick={handleReset}
-              className="finance-reset-button"
+              className="text-xs px-2 py-1 bg-red-50 text-red-700 border border-red-100 rounded-md hover:bg-red-100"
             >
               Reset data
             </button>
@@ -187,63 +187,63 @@ const FinanceDashboard: React.FC = () => {
       
 
       {message && (
-        <div className="finance-message">
+        <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-800">
           {message}
         </div>
       )}
 
       {/* GRID 1: four info cards */}
-      <section className="finance-grid-info">
-        <div className="finance-info-card">
-          <p className="finance-card-label">Coins left</p>
-          <p className="finance-card-value-emerald">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          <p className="text-sm text-gray-500">Coins left</p>
+          <p className="mt-2 text-3xl font-semibold text-emerald-600">
             {finance.moneyLeft}
           </p>
         </div>
-        <div className="finance-info-card">
-          <p className="finance-card-label">Coins spent</p>
-          <p className="finance-card-value-rose">
+        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          <p className="text-sm text-gray-500">Coins spent</p>
+          <p className="mt-2 text-3xl font-semibold text-rose-500">
             {finance.moneySpent}
           </p>
         </div>
-        <div className="finance-info-card">
-          <p className="finance-card-label">Number of purchases</p>
-          <p className="finance-card-value-gray">
+        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          <p className="text-sm text-gray-500">Number of purchases</p>
+          <p className="mt-2 text-3xl font-semibold text-gray-800">
             {finance.numberOfPurchases}
           </p>
         </div>
-        <div className="finance-debt-card">
-          <p className="finance-debt-label">Amount owed</p>
-          <p className="finance-debt-value">
+        <div className="rounded-xl border border-yellow-200 bg-yellow-50 p-5 shadow-sm">
+          <p className="text-sm text-yellow-700 font-medium">Amount owed</p>
+          <p className="mt-2 text-3xl font-semibold text-yellow-600">
             {finance.amountBorrowed}
           </p>
         </div>
       </section>
 
       {/* GRID 2: loan and purchased athletes side by side */}
-      <section className="finance-grid-main">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Loan-card */}
-        <div className="finance-card">
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <div>
-            <h2 className="finance-section-title finance-section-margin">
+            <h2 className="text-lg font-semibold text-gray-900 mb-1">
               Take loan
             </h2>
-            <p className="finance-description">
+            <p className="text-sm text-gray-500 mb-4">
               Add more coins from the bank to your balance.
             </p>
           </div>
 
-          <div className="finance-form-spacing">
+          <div className="space-y-2">
             <input
               type="number"
               value={loanAmount}
               onChange={(e) => setLoanAmount(e.target.value)}
               placeholder="Amount"
-              className="finance-input"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             <button
               onClick={handleLoan}
-              className="finance-button-full"
+              className="w-full inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 active:bg-blue-800"
             >
               Get coins from bank
             </button>
@@ -251,43 +251,43 @@ const FinanceDashboard: React.FC = () => {
         </div>
 
         {/* Athletes not purchased (available) */}
-        <div className="finance-card">
-          <div className="finance-section-header">
-            <h2 className="finance-section-title">
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">
               Athletes not purchased
             </h2>
-            <p className="finance-count-text">
+            <p className="text-xs text-gray-400">
               Total available: {availableAthletes.length}
             </p>
           </div>
 
           {/* Search field */}
-          <div className="finance-search-margin">
+          <div className="mb-4">
             <input
               type="text"
               placeholder="Search by name..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="finance-input"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
 
           {availableAthletes.length === 0 ? (
-            <p className="finance-empty-text">No available athletes to purchase.</p>
+            <p className="text-sm text-gray-500">No available athletes to purchase.</p>
           ) : (
-            <ul className="finance-list-spacing">
+            <ul className="space-y-3">
               {availableAthletes.map((athlete) => (
                 <li
                   key={athlete.id}
-                  className="finance-list-item"
+                  className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 px-4 py-3"
                 >
                   <div>
-                    <p className="finance-athlete-name">{athlete.name}</p>
-                    <p className="finance-athlete-details">{athlete.gender} • {athlete.price} coins</p>
+                    <p className="font-medium text-gray-900">{athlete.name}</p>
+                    <p className="text-sm text-gray-500">{athlete.gender} • {athlete.price} coins</p>
                   </div>
                   <button
                     onClick={() => handlePurchase(athlete.id)}
-                    className="finance-button"
+                    className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 active:bg-blue-800"
                   >
                     Buy
                   </button>
@@ -299,33 +299,33 @@ const FinanceDashboard: React.FC = () => {
       </section>
 
       {/* Purchased athletes section */}
-      <section className="finance-purchased-margin">
-        <div className="finance-card">
-          <div className="finance-section-header">
-            <h2 className="finance-section-title">
+      <section className="mt-8">
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">
               Purchased athletes
             </h2>
-            <p className="finance-count-text">
+            <p className="text-xs text-gray-400">
               Total: {purchasedAthletes.length}
             </p>
           </div>
 
           {purchasedAthletes.length === 0 ? (
-            <p className="finance-empty-text">No athletes purchased yet.</p>
+            <p className="text-sm text-gray-500">No athletes purchased yet.</p>
           ) : (
-            <ul className="finance-list-spacing">
+            <ul className="space-y-3">
               {purchasedAthletes.map((athlete) => (
                 <li
                   key={athlete.id}
-                  className="finance-list-item"
+                  className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50 px-4 py-3"
                 >
                   <div>
-                    <p className="finance-athlete-name">{athlete.name}</p>
-                    <p className="finance-athlete-details">{athlete.gender}</p>
+                    <p className="font-medium text-gray-900">{athlete.name}</p>
+                    <p className="text-sm text-gray-500">{athlete.gender}</p>
                   </div>
-                  <div className="finance-price-right">
-                    <p className="finance-price-text">{athlete.price} coins</p>
-                    <p className="finance-purchased-label">Purchased</p>
+                  <div className="text-right">
+                    <p className="font-semibold text-gray-900">{athlete.price} coins</p>
+                    <p className="text-xs text-gray-400">Purchased</p>
                   </div>
                 </li>
               ))}

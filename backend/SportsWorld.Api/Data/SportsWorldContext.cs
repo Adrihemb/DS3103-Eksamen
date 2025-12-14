@@ -71,6 +71,41 @@ namespace SportsWorld.Api.Data
                     PurchaseStatus = false
                 }
             );
+
+            modelBuilder.Entity<Venue>().HasData(
+                new Venue
+                {
+                    Id = 1,
+                    Name = "Wembley Stadium",
+                    Capacity = 90000,
+                    Image = "https://example.com/wembley.jpg"
+                },
+                new Venue
+                {
+                    Id = 2,
+                    Name = "Camp Nou",
+                    Capacity = 99354,
+                    Image = "https://example.com/campnou.jpg"
+                },
+                new Venue
+                {
+                    Id = 3,
+                    Name = "Old Trafford",
+                    Capacity = 74310,
+                    Image = "https://example.com/oldtrafford.jpg"
+                }
+            );
+
+            modelBuilder.Entity<Finance>().HasData(
+                new Finance
+                {
+                    Id = 1,
+                    MoneyLeft = 1000,
+                    NumberOfPurchases = 0,
+                    MoneySpent = 0,
+                    AmountBorrowed = 0
+                }
+            );
         }
     }
 }

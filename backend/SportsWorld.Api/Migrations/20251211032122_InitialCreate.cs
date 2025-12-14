@@ -38,26 +38,12 @@ namespace SportsWorld.Api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     MoneyLeft = table.Column<decimal>(type: "TEXT", nullable: false),
                     NumberOfPurchases = table.Column<int>(type: "INTEGER", nullable: false),
-                    MoneySpent = table.Column<decimal>(type: "TEXT", nullable: false)
+                    MoneySpent = table.Column<decimal>(type: "TEXT", nullable: false),
+                    AmountBorrowed = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Finances", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Venues",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Capacity = table.Column<int>(type: "INTEGER", nullable: false),
-                    Image = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Venues", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -72,6 +58,12 @@ namespace SportsWorld.Api.Migrations
                     { 5, "Female", "https://example.com/ada-hegerberg.jpg", "Ada Hegerberg", 88, false },
                     { 6, "Female", "https://example.com/alexia.jpg", "Alexia Putellas", 89, false }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Finances",
+                columns: new[] { "Id", "AmountBorrowed", "MoneyLeft", "MoneySpent", "NumberOfPurchases" },
+                columnTypes: new[] { "INTEGER", "TEXT", "TEXT", "TEXT", "INTEGER" },
+                values: new object[] { 1, 0m, 1000m, 0m, 0 });
         }
 
         /// <inheritdoc />
@@ -82,9 +74,6 @@ namespace SportsWorld.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Finances");
-
-            migrationBuilder.DropTable(
-                name: "Venues");
         }
     }
 }

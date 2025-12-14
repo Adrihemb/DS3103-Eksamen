@@ -3,7 +3,7 @@ import AthletePage from "./pages/AthletePage";
 import AthleteOverviewPage from "./pages/AthleteOverviewPage";
 import VenuePage from "./pages/VenuePage";
 import VenueOverviewPage from "./pages/VenueOverviewPage";
-import FinanceDashboard from "./components/FinanceDashboard";
+import FinanceDashboard from "./pages/FinanceDashboard";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
 
         <nav className="p-4 border-b mb-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-gray-100">
           <Link to="/" className="border p-2 rounded bg-white hover:bg-gray-200">
-            Dashboard
+            Finance dashboard
           </Link>
           <Link to="/athletes" className="border p-2 rounded bg-white hover:bg-gray-200">
             Athletes (kjøp)
@@ -47,7 +47,7 @@ function App() {
               element={
                 <div className="p-4">
                   <h2 className="mb-4">404 - Side ikke funnet</h2>
-                  <Link to="/" className="text-blue-600">Tilbake til Dashboard</Link>
+                  <Link to="/" className="text-blue-600">Tilbake til Finance dashboard</Link>
                 </div>
               } 
             />
