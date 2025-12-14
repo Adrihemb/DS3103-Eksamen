@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportsWorld Web API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>SportsWorld Web API</h1>
+        <p>This API provides functionality for managing athletes, venues, finances and purchases in the SportsWorld application.</p>
+    </header>
+
+    <section id="base-url">
+        <h2>Base URL</h2>
+        <p>http://localhost:5189</p>
+    </section>
+
+    <section id="api-explorer">
+        <h2>API Explorer</h2>
+        <p>For interactive API testing and detailed documentation, visit the <a href="/swagger" target="_blank">Swagger UI</a>.</p>
+    </section>
+
+    <section id="endpoints">
+        <h2>Endpoints</h2>
+
+        <div class="controller">
+            <h3>AthleteController</h3>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Athlete</span></p>
+                <p>Get all athletes.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Athlete/{id}</span></p>
+                <p>Get a specific athlete by ID.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Athlete/search?name={name}</span></p>
+                <p>Search athletes by name.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/Athlete</span></p>
+                <p>Create a new athlete.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">PUT</span> <span class="url">/api/Athlete/{id}</span></p>
+                <p>Update an athlete or mark as purchased.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">DELETE</span> <span class="url">/api/Athlete/{id}</span></p>
+                <p>Delete an athlete.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/Athlete/{id}/purchase</span></p>
+                <p>Purchase an athlete.</p>
+            </div>
+        </div>
+
+        <div class="controller">
+            <h3>VenueController</h3>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Venue</span></p>
+                <p>Get all venues.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Venue/{id}</span></p>
+                <p>Get a specific venue by ID.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Venue/search?name={name}</span></p>
+                <p>Search venues by name.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/Venue</span></p>
+                <p>Create a new venue.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">PUT</span> <span class="url">/api/Venue/{id}</span></p>
+                <p>Update a venue.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">DELETE</span> <span class="url">/api/Venue/{id}</span></p>
+                <p>Delete a venue.</p>
+            </div>
+        </div>
+
+        <div class="controller">
+            <h3>FinanceController</h3>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Finance</span></p>
+                <p>Get the finance data.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">GET</span> <span class="url">/api/Finance/{id}</span></p>
+                <p>Get finance data by ID.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/Finance</span></p>
+                <p>Create finance data.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">PUT</span> <span class="url">/api/Finance/{id}</span></p>
+                <p>Update finance data.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">DELETE</span> <span class="url">/api/Finance/{id}</span></p>
+                <p>Delete finance data.</p>
+            </div>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/Finance/loan</span></p>
+                <p>Take a loan.</p>
+            </div>
+        </div>
+
+        <div class="controller">
+            <h3>UploadImageController</h3>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/UploadImage?folder={folder}</span></p>
+                <p>Upload an image to a specified folder (default: venues).</p>
+            </div>
+        </div>
+
+        <div class="controller">
+            <h3>ResetController</h3>
+            <div class="endpoint">
+                <p><span class="method">POST</span> <span class="url">/api/Reset</span></p>
+                <p>Reset finance and athlete purchase statuses.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
