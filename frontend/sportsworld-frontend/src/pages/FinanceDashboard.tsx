@@ -3,8 +3,6 @@ import type { Finance } from "../types/Finance";
 import type { Athlete } from "../types/Athletes";
 import {
   getFinance,
-  getAllFinances,
-  getFinanceByDepartment,
   getAthletes,
   takeLoan,
   purchaseAthlete,
@@ -13,15 +11,13 @@ import {
 
 /**
  * FinanceDashboard Component
- * Displays financial overview per department, allows users to take loans and purchase athletes.
- * Fetches finance and athlete data on component mount, with department selection.
+ * Displays financial overview, allows users to take loans and purchase athletes.
+ * Fetches finance and athlete data on component mount.
  */
 const FinanceDashboard: React.FC = () => {
   // State for finance data and UI
   const [finance, setFinance] = useState<Finance | null>(null);
   const [athletes, setAthletes] = useState<Athlete[]>([]);
-  const [departments, setDepartments] = useState<string[]>([]);
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("");
   const [loanAmount, setLoanAmount] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -35,21 +31,12 @@ const FinanceDashboard: React.FC = () => {
   useEffect(() => {
     async function load() {
       try {
-        // Fetch all finance departments and athlete data
-        const financeDataArray = await getAllFinances();
-        const athletesData = await getAthletes();
-        
-        // Extract unique department names from finance data
-        const departmentNames = financeDataArray.map(f => f.department);
-        setDepartments(departmentNames);
-        
-        // Set first department as selected and load its data
-        if (departmentNames.length > 0) {
-          setSelectedDepartment(departmentNames[0]);
-          const firstDepartmentData = await getFinanceByDepartment(departmentNames[0]);
-          setFinance(firstDepartmentData);
-        }
-        
+        // Fetch both finance and athlete data in parallel
+        const [financeData, athletesData] = await Promise.all([
+          getFinance(),
+          getAthletes(),
+        ]);
+        setFinance(financeData);
         setAthletes(athletesData);
         setLoading(false);
       } catch (err) {
@@ -61,22 +48,6 @@ const FinanceDashboard: React.FC = () => {
 
     load();
   }, []);
-
-  /**
-   * Handle department change
-   * Loads finance data for the selected department
-   */
-  const handleDepartmentChange = async (department: string) => {
-    setSelectedDepartment(department);
-    setMessage(null);
-    try {
-      const departmentData = await getFinanceByDepartment(department);
-      setFinance(departmentData);
-    } catch (err) {
-      const e = err as Error;
-      setError(e.message);
-    }
-  };
 
   /**
    * Handle loan request from the bank
@@ -198,10 +169,10 @@ const FinanceDashboard: React.FC = () => {
           <p className="text-sm font-medium text-gray-700">
             Coins spent:{" "}
             <span className="font-semibold text-purple-600">
-              {finance?.moneySpent}
+              {finance.moneySpent}
             </span>
           </p>
-          <p className="text-xs text-gray-400">Coins left: {finance?.moneyLeft}</p>
+          <p className="text-xs text-gray-400">Coins left: {finance.moneyLeft}</p>
           <div className="mt-2">
             <button
               onClick={handleReset}
@@ -213,23 +184,7 @@ const FinanceDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Department Selector */}
-      <div className="mb-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <label className="block text-sm font-medium text-gray-900 mb-2">
-          Select Department
-        </label>
-        <select
-          value={selectedDepartment}
-          onChange={(e) => handleDepartmentChange(e.target.value)}
-          className="w-full md:w-64 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-        >
-          {departments.map((dept) => (
-            <option key={dept} value={dept}>
-              {dept}
-            </option>
-          ))}
-        </select>
-      </div>
+      
 
       {message && (
         <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-800">
@@ -242,25 +197,25 @@ const FinanceDashboard: React.FC = () => {
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
           <p className="text-sm text-gray-500">Coins left</p>
           <p className="mt-2 text-3xl font-semibold text-emerald-600">
-            {finance?.moneyLeft ?? 0}
+            {finance.moneyLeft}
           </p>
         </div>
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
           <p className="text-sm text-gray-500">Coins spent</p>
           <p className="mt-2 text-3xl font-semibold text-rose-500">
-            {finance?.moneySpent ?? 0}
+            {finance.moneySpent}
           </p>
         </div>
         <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
           <p className="text-sm text-gray-500">Number of purchases</p>
           <p className="mt-2 text-3xl font-semibold text-gray-800">
-            {finance?.numberOfPurchases ?? 0}
+            {finance.numberOfPurchases}
           </p>
         </div>
         <div className="rounded-xl border border-yellow-200 bg-yellow-50 p-5 shadow-sm">
           <p className="text-sm text-yellow-700 font-medium">Amount owed</p>
           <p className="mt-2 text-3xl font-semibold text-yellow-600">
-            {finance?.amountBorrowed ?? 0}
+            {finance.amountBorrowed}
           </p>
         </div>
       </section>

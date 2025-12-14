@@ -23,25 +23,15 @@ namespace SportsWorld.Api.Controllers
         }
 
         // GET: api/finance
-        // Returnerer alle Finance-rader
+        // Returnerer den ene Finance-raden (eller 404 hvis den ikke finnes)
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Finance>>> GetAllFinance()
+        public async Task<ActionResult<Finance>> GetFinance()
         {
-            var finances = await _context.Finances.ToListAsync();
-            return Ok(finances);
-        }
-
-        // GET: api/finance/department/{name}
-        // Henter Finance-data for en spesifikk department
-        [HttpGet("department/{name}")]
-        public async Task<ActionResult<Finance>> GetFinanceByDepartment(string name)
-        {
-            var finance = await _context.Finances
-                .FirstOrDefaultAsync(f => f.Department == name);
+            var finance = await GetSingleFinanceAsync();
 
             if (finance == null)
             {
-                return NotFound($"No Finance data found for department '{name}'.");
+                return NotFound("No Finance row found. You must create one first.");
             }
 
             return Ok(finance);
@@ -62,27 +52,21 @@ namespace SportsWorld.Api.Controllers
         }
 
         // POST: api/finance
-        // Oppretter en ny Finance-rad for en department
+        // Oppretter den ene Finance-raden (kjør dette én gang)
         [HttpPost]
         public async Task<ActionResult<Finance>> CreateFinance([FromBody] Finance finance)
         {
-            if (string.IsNullOrWhiteSpace(finance.Department))
-            {
-                return BadRequest("Department name is required.");
-            }
-
-            // Check if this department already exists
-            var existing = await _context.Finances
-                .FirstOrDefaultAsync(f => f.Department == finance.Department);
+            // For sikkerhets skyld: ikke la dem lage flere rader
+            var existing = await GetSingleFinanceAsync();
             if (existing != null)
             {
-                return BadRequest($"Finance data for '{finance.Department}' already exists.");
+                return BadRequest("Finance row already exists. Only one row is allowed.");
             }
 
             _context.Finances.Add(finance);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetFinanceByDepartment), new { name = finance.Department }, finance);
+            return CreatedAtAction(nameof(GetFinanceById), new { id = finance.Id }, finance);
         }
 
         // PUT: api/finance/1
@@ -100,11 +84,9 @@ namespace SportsWorld.Api.Controllers
                 return NotFound();
             }
 
-            existing.Department = updated.Department;
             existing.MoneyLeft = updated.MoneyLeft;
             existing.MoneySpent = updated.MoneySpent;
             existing.NumberOfPurchases = updated.NumberOfPurchases;
-            existing.AmountBorrowed = updated.AmountBorrowed;
 
             await _context.SaveChangesAsync();
             return NoContent();

@@ -110,10 +110,6 @@ namespace SportsWorld.Api.Migrations
                     b.Property<decimal>("AmountBorrowed")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Department")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("MoneyLeft")
                         .HasColumnType("TEXT");
 
