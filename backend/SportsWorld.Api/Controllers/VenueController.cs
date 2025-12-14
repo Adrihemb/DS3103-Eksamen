@@ -5,18 +5,20 @@ using SportsWorld.Api.Models;
 
 namespace SportsWorld.Api.Controllers
 {
+    //REST API controller handling all venue operations
     [ApiController]
     [Route("api/[controller]")]
     public class VenueController : ControllerBase
     {
         private readonly SportsWorldContext _context;
 
+        //Dependency injection of database context
         public VenueController(SportsWorldContext context)
         {
             _context = context;
         }
 
-        // GET: api/venue
+        //Retrieves complete list of venues from database
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Venue>>> GetAllVenues()
         {
@@ -24,7 +26,7 @@ namespace SportsWorld.Api.Controllers
             return Ok(venues);
         }
 
-        // GET: api/venue/5
+        //Fetches a specific venue using its unique identifier
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Venue>> GetVenueById(int id)
         {
@@ -38,7 +40,7 @@ namespace SportsWorld.Api.Controllers
             return Ok(venue);
         }
 
-        // GET: api/venue/search?name=wembley
+        //Searches for venues matching the provided name (case-insensitive)
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Venue>>> GetByName([FromQuery] string name)
         {
@@ -54,7 +56,7 @@ namespace SportsWorld.Api.Controllers
             return Ok(venues);
         }
 
-        // POST: api/venue
+        //Adds a new venue to the database
         [HttpPost]
         public async Task<ActionResult<Venue>> CreateVenue([FromBody] Venue venue)
         {
@@ -64,10 +66,11 @@ namespace SportsWorld.Api.Controllers
             return CreatedAtAction(nameof(GetVenueById), new { id = venue.Id }, venue);
         }
 
-        // PUT: api/venue/5
+        //Updates existing venue properties
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateVenue(int id, [FromBody] Venue updated)
         {
+            //Ensures URL parameter matches the venue being updated
             if (id != updated.Id)
             {
                 return BadRequest("Id in URL and body must match.");
@@ -79,6 +82,7 @@ namespace SportsWorld.Api.Controllers
                 return NotFound();
             }
 
+            //Apply changes to venue properties
             existing.Name = updated.Name;
             existing.Capacity = updated.Capacity;
             existing.Image = updated.Image;
@@ -88,7 +92,7 @@ namespace SportsWorld.Api.Controllers
             return NoContent();
         }
 
-        // DELETE: api/venue/5
+        //Removes a venue from the database permanently
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteVenue(int id)
         {

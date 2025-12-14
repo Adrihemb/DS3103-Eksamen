@@ -1,3 +1,4 @@
+//Main application component with routing and navigation
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AthletePage from "./pages/AthletePage";
 import AthleteOverviewPage from "./pages/AthleteOverviewPage";
@@ -9,10 +10,12 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+        {/* Application header */}
         <h1 className="p-4 bg-blue-600 text-white text-center text-3xl">
           SportsWorld
         </h1>
 
+        {/* Responsive navigation bar with grid layout for different screen sizes */}
         <nav className="p-4 border-b mb-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 bg-gray-100">
           <Link to="/" className="border p-2 rounded bg-white hover:bg-gray-200">
             Finance dashboard
@@ -34,6 +37,7 @@ function App() {
           </Link>
         </nav>
 
+        {/* Route definitions for different pages */}
         <main>
           <Routes>
             <Route path="/" element={<FinanceDashboard />} />
@@ -42,6 +46,7 @@ function App() {
             <Route path="/athletes/register" element={<AthleteOverviewPage />} />
             <Route path="/venues" element={<VenueOverviewPage />} />
             <Route path="/venues/admin" element={<VenuePage />} />
+            {/* 404 page for unmatched routes */}
             <Route 
               path="*" 
               element={

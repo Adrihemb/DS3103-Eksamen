@@ -107,9 +107,6 @@ namespace SportsWorld.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("AmountBorrowed")
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("MoneyLeft")
                         .HasColumnType("TEXT");
 
@@ -122,16 +119,6 @@ namespace SportsWorld.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Finances");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AmountBorrowed = 0m,
-                            MoneyLeft = 1000m,
-                            MoneySpent = 0m,
-                            NumberOfPurchases = 0
-                        });
                 });
 
             modelBuilder.Entity("SportsWorld.Api.Models.Venue", b =>
@@ -159,23 +146,58 @@ namespace SportsWorld.Api.Migrations
                         new
                         {
                             Id = 1,
-                            Capacity = 90000,
-                            Image = "https://example.com/wembley.jpg",
-                            Name = "Wembley Stadium"
+                            Capacity = 75000,
+                            Image = "old-trafford.jpg",
+                            Name = "Old Trafford"
                         },
                         new
                         {
                             Id = 2,
-                            Capacity = 99354,
-                            Image = "https://example.com/campnou.jpg",
-                            Name = "Camp Nou"
+                            Capacity = 54000,
+                            Image = "anfield.jpg",
+                            Name = "Anfield"
                         },
                         new
                         {
                             Id = 3,
-                            Capacity = 74310,
-                            Image = "https://example.com/oldtrafford.jpg",
-                            Name = "Old Trafford"
+                            Capacity = 60000,
+                            Image = "emirates-stadium.jpg",
+                            Name = "Emirates Stadium"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacity = 53000,
+                            Image = "etihad-stadium.jpg",
+                            Name = "Etihad Stadium"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Capacity = 62000,
+                            Image = "tottenham-hotspur-stadium.jpg",
+                            Name = "Tottenham Hotspur Stadium"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Capacity = 62000,
+                            Image = "london-stadium.jpg",
+                            Name = "London Stadium"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Capacity = 42000,
+                            Image = "villa-park.jpg",
+                            Name = "Villa Park"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Capacity = 52000,
+                            Image = "st-james-park.jpg",
+                            Name = "St James' Park"
                         });
                 });
 #pragma warning restore 612, 618

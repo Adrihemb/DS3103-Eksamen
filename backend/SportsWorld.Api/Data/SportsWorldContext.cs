@@ -76,34 +76,58 @@ namespace SportsWorld.Api.Data
                 new Venue
                 {
                     Id = 1,
-                    Name = "Wembley Stadium",
-                    Capacity = 90000,
-                    Image = "https://example.com/wembley.jpg"
+                    Name = "Old Trafford",
+                    Capacity = 75000,
+                    Image = "old-trafford.jpg"
                 },
                 new Venue
                 {
                     Id = 2,
-                    Name = "Camp Nou",
-                    Capacity = 99354,
-                    Image = "https://example.com/campnou.jpg"
+                    Name = "Anfield",
+                    Capacity = 54000,
+                    Image = "anfield.jpg"
                 },
                 new Venue
                 {
                     Id = 3,
-                    Name = "Old Trafford",
-                    Capacity = 74310,
-                    Image = "https://example.com/oldtrafford.jpg"
-                }
-            );
-
-            modelBuilder.Entity<Finance>().HasData(
-                new Finance
+                    Name = "Emirates Stadium",
+                    Capacity = 60000,
+                    Image = "emirates-stadium.jpg"
+                },
+                new Venue
                 {
-                    Id = 1,
-                    MoneyLeft = 1000,
-                    NumberOfPurchases = 0,
-                    MoneySpent = 0,
-                    AmountBorrowed = 0
+                    Id = 4,
+                    Name = "Etihad Stadium",
+                    Capacity = 53000,
+                    Image = "etihad-stadium.jpg"
+                },
+                new Venue
+                {
+                    Id = 5,
+                    Name = "Tottenham Hotspur Stadium",
+                    Capacity = 62000,
+                    Image = "tottenham-hotspur-stadium.jpg"
+                },
+                new Venue
+                {
+                    Id = 6,
+                    Name = "London Stadium",
+                    Capacity = 62000,
+                    Image = "london-stadium.jpg"
+                },
+                new Venue
+                {
+                    Id = 7,
+                    Name = "Villa Park",
+                    Capacity = 42000,
+                    Image = "villa-park.jpg"
+                },
+                new Venue
+                {
+                    Id = 8,
+                    Name = "St James' Park",
+                    Capacity = 52000,
+                    Image = "st-james-park.jpg"
                 }
             );
         }
