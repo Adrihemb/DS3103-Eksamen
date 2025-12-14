@@ -42,29 +42,63 @@ namespace SportsWorld.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Athletes", (string)null);
-                });
+                    b.ToTable("Athletes");
 
-            modelBuilder.Entity("SportsWorld.Api.Models.Venue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Venues", (string)null);
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Gender = "Male",
+                            Image = "https://example.com/messi.jpg",
+                            Name = "Lionel Messi",
+                            Price = 100,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Gender = "Male",
+                            Image = "https://example.com/ronaldo.jpg",
+                            Name = "Cristiano Ronaldo",
+                            Price = 95,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Gender = "Male",
+                            Image = "https://example.com/haaland.jpg",
+                            Name = "Erling Haaland",
+                            Price = 90,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Gender = "Male",
+                            Image = "https://example.com/mbappe.jpg",
+                            Name = "Kylian Mbappé",
+                            Price = 92,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Gender = "Female",
+                            Image = "https://example.com/ada-hegerberg.jpg",
+                            Name = "Ada Hegerberg",
+                            Price = 88,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Gender = "Female",
+                            Image = "https://example.com/alexia.jpg",
+                            Name = "Alexia Putellas",
+                            Price = 89,
+                            PurchaseStatus = false
+                        });
                 });
 
             modelBuilder.Entity("SportsWorld.Api.Models.Finance", b =>
@@ -107,6 +141,64 @@ namespace SportsWorld.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Venues");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacity = 75000,
+                            Image = "old-trafford.jpg",
+                            Name = "Old Trafford"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Capacity = 54000,
+                            Image = "anfield.jpg",
+                            Name = "Anfield"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Capacity = 60000,
+                            Image = "emirates-stadium.jpg",
+                            Name = "Emirates Stadium"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacity = 53000,
+                            Image = "etihad-stadium.jpg",
+                            Name = "Etihad Stadium"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Capacity = 62000,
+                            Image = "tottenham-hotspur-stadium.jpg",
+                            Name = "Tottenham Hotspur Stadium"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Capacity = 62000,
+                            Image = "london-stadium.jpg",
+                            Name = "London Stadium"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Capacity = 42000,
+                            Image = "villa-park.jpg",
+                            Name = "Villa Park"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Capacity = 52000,
+                            Image = "st-james-park.jpg",
+                            Name = "St James' Park"
+                        });
                 });
 #pragma warning restore 612, 618
         }

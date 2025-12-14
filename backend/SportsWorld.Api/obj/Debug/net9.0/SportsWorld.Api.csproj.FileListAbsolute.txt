@@ -119,7 +119,6 @@ C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/Spo
 C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
 C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
 C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/scopedcss/bundle/SportsWorld.Api.styles.css
-C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/compressed/ll5jzmx01j-idjv6xozi8.gz
 C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/staticwebassets.build.json
 C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/staticwebassets.build.json.cache
 C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/SportsWorld.Api/obj/Debug/net9.0/staticwebassets.development.json
@@ -383,7 +382,6 @@ C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\Spo
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\scopedcss\bundle\SportsWorld.Api.styles.css
-C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\compressed\ll5jzmx01j-idjv6xozi8.gz
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\staticwebassets.development.json
@@ -394,3 +392,4 @@ C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\Spo
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\SportsWorld.Api.pdb
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\SportsWorld.Api.genruntimeconfig.cache
 C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\ref\SportsWorld.Api.dll
+C:\Users\mathi\Desktop\HK\Webutvikling\DS3103-eksamen\DS3103-Eksamen\backend\SportsWorld.Api\obj\Debug\net9.0\compressed\ll5jzmx01j-5ipweew5fc.gz

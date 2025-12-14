@@ -2,6 +2,7 @@ using SportsWorld.Api.Models.Interfaces;
 
 namespace SportsWorld.Api.Models
 {
+    //Model representing a sports venue with capacity and image
     public class Venue : IVenue
     {
         public int Id { get; set; }

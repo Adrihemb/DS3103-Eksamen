@@ -1,3 +1,4 @@
+//Administration page for managing venues (CRUD operations)
 import { useState, useEffect } from 'react';
 import VenueList from '../components/VenueList';
 import VenueAdmin from '../components/VenueAdmin';
@@ -6,11 +7,13 @@ import VenueService from '../services/VenueService';
 import type { IVenue, IVenueInput } from '../types/venueTypes';
 
 function VenuePage() {
+    //State for storing venues, selected venues, loading and error
   const [venues, setVenues] = useState<IVenue[]>([]);
   const [selectedVenue, setSelectedVenue] = useState<IVenue | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
 
+  //Fetch venues from backend when page loads
     async function loadVenues(): Promise<void> {
         try {
             setLoading(true);
@@ -27,10 +30,12 @@ function VenuePage() {
         }
     }
 
+    //useEffect runs loadVenues when componenet mounts
     useEffect(() => {
         void loadVenues();
     }, []);
 
+    //Handels creating a new venue
     async function handleCreateVenue(
         venueData: IVenueInput,
         imageFile?: File | null
@@ -40,6 +45,7 @@ function VenuePage() {
 
             const finalVenueData: IVenueInput = { ...venueData };
 
+            //Uploads image first if one is selected
             if (imageFile) {
                 const uploadResponse = await ImageUploadService.uploadImage(imageFile);
                 finalVenueData.image = uploadResponse.data.fileName;
@@ -47,6 +53,7 @@ function VenuePage() {
 
             const createdVenue = await VenueService.create(finalVenueData);
 
+            //Adds new venue to the list
             setVenues((prev) => [...prev, createdVenue]);
             setSelectedVenue(null);
         } catch (err) {
@@ -55,6 +62,7 @@ function VenuePage() {
         }
     }
 
+    //Handles updating an exsisting venue
     async function handleUpdateVenue(
         venueData : IVenueInput,
          imageFile?: File | null
@@ -68,6 +76,7 @@ function VenuePage() {
 
             const finalVenueData: IVenueInput = { ...venueData };
 
+            //Uploads new image if one is selected
             if (imageFile) {
                 const uploadResponse = await ImageUploadService.uploadImage(imageFile);
                 finalVenueData.image = uploadResponse.data.fileName;
@@ -75,6 +84,7 @@ function VenuePage() {
 
             await VenueService.update(finalVenueData);
 
+            //Updates venue in list with new values
             setVenues((prev) =>
                 prev.map((v) => (v.id === venueData.id ? { ...v,
                     name: finalVenueData.name,
@@ -89,7 +99,9 @@ function VenuePage() {
         }
     }
 
+    //Handles deleting a new venue
     async function handleDeleteVenue(venueId: number): Promise<void> {
+        //Asks for confirmation before deliting a venue
         const shouldDelete = window.confirm(
             'Er du sikker på at du vil slette denne arenaen?'
         );
@@ -100,6 +112,7 @@ function VenuePage() {
 
             await VenueService.remove(venueId);
 
+            //Removes venue from list
             setVenues((prev) => prev.filter((v) => v.id !== venueId));
             setSelectedVenue(null);
         } catch (err) {
@@ -112,9 +125,11 @@ function VenuePage() {
         <main className="p-4">
             <h1 className="mb-4 text-2xl font-bold">Venue administration</h1>
 
+            {/* Shows loading/error messages */}
             {loading && <p>Laster arenaer...</p>}
             {error && <p className="text-red-600">{error}</p>}
         
+            {/* Shows VenueList and VenueAdmin side by side */}
             {!loading && (
                 <div className="flex gap-4 w-full">
                     <div className="flex-1">

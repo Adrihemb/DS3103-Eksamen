@@ -1,3 +1,4 @@
+//Form component for creating, editing and deleting venues
 import { useEffect, useState } from "react";
 import type { IVenue, IVenueInput } from "../types/venueTypes";
 
@@ -10,11 +11,13 @@ interface VenueAdminProps {
 }
 
 function VenueAdmin({ selectedVenue, onCreateVenue, onUpdateVenue, onDeleteVenue, onClearSelection }: VenueAdminProps) {
+  //Form state for input fields
   const [name, setName] = useState<string>("");
   const [capacity, setCapacity] = useState<string>("");
   const [image, setImage] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
 
+  //Populate form fields when a venue is selected for editing
   useEffect(() => {
     if (selectedVenue) {
       setName(selectedVenue.name);
@@ -30,23 +33,26 @@ function VenueAdmin({ selectedVenue, onCreateVenue, onUpdateVenue, onDeleteVenue
   }, [selectedVenue]);
   
 
+  //Handles form submission for creating or updating a venue
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    //Validate capacity input is a positive number
     const capacityNumber = Number(capacity);
     if (Number.isNaN(capacityNumber) || capacityNumber <= 0) {
       alert("Kapasitet må være et gyldig positivt tall.");
       return;
     }
 
+    //Build venue data object
     const venueData = {
-
         ...(selectedVenue ? { id: selectedVenue.id } : {}),
         name: name.trim(),
         capacity: capacityNumber,
         image: image.trim(),
     };
 
+    //Call appropriate handler based on whether we're creating or updating
     if (selectedVenue) {
       onUpdateVenue(venueData, imageFile);
     } else {
@@ -54,15 +60,18 @@ function VenueAdmin({ selectedVenue, onCreateVenue, onUpdateVenue, onDeleteVenue
     }
 }
 
+//Handles deleting the selected venue
 function handleDeleteClick() {
     if (!selectedVenue) return;
     onDeleteVenue(selectedVenue.id);
 }
 
+//Clears the form inputs and selection
 function handleClearClick() {
     onClearSelection();
 } 
 
+//Determine if we're in editing mode
 const isEditing = !!selectedVenue;
 
 return (
@@ -70,6 +79,7 @@ return (
         <h2 className="mb-4 font-bold">{isEditing ? "Rediger Arena" : "Legg til Ny Arena"}</h2>
 
         <form onSubmit={handleSubmit}>
+            {/*Name input field*/}
             <div className="mb-4">
                 <label htmlFor="venueName" className="mb-2">Navn:</label>
                 <br />
@@ -85,6 +95,7 @@ return (
                 />
             </div>
 
+            {/*Capacity input field*/}
             <div className="mb-4">
                 <label htmlFor="venueCapacity" className="mb-2">Kapasitet:</label>
                 <br />
@@ -101,6 +112,7 @@ return (
                 />
             </div>
 
+            {/*Image file input field*/}
             <div className="mb-4">
                 <label htmlFor="venueImage" className="mb-2">Bilde (valgfritt):</label>
                 <br />
@@ -124,6 +136,7 @@ return (
                 )}  
             </div>
 
+            {/*Action buttons (submit, clear, delete)*/}
             <div className="flex gap-4">
                 <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
                     {isEditing ? "Lagre Endringer" : "Opprett Arena"}
