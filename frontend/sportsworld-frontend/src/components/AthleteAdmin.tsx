@@ -22,6 +22,8 @@ function AthleteAdmin({
   const [image, setImage] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [purchaseStatus, setPurchaseStatus] = useState<boolean>(false);
+  const [position, setPosition] = useState<string>("");
+  const [nationality, setNationality] = useState<string>("");
 
   useEffect(() => {
     if (selectedAthlete) {
@@ -31,6 +33,8 @@ function AthleteAdmin({
       setImage(selectedAthlete.image ?? "");
       setImageFile(null);
       setPurchaseStatus(selectedAthlete.purchaseStatus);
+      setPosition(selectedAthlete.position ?? "");
+      setNationality(selectedAthlete.nationality ?? "");
     } else {
       setName("");
       setGender("Male");
@@ -38,6 +42,8 @@ function AthleteAdmin({
       setImage("");
       setImageFile(null);
       setPurchaseStatus(false);
+      setPosition("");
+      setNationality("");
     }
   }, [selectedAthlete]);
 
@@ -57,6 +63,8 @@ function AthleteAdmin({
       price: priceNumber,
       image: image.trim(),
       purchaseStatus,
+      position: position.trim(),
+      nationality: nationality.trim(),
     };
 
     if (selectedAthlete) {
@@ -151,6 +159,36 @@ function AthleteAdmin({
               Nåværende bilde: <code>{image}</code>
             </p>
           )}
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="athletePosition" className="mb-2">Posisjon (valgfritt):</label>
+          <br />
+          <input
+            id="athletePosition"
+            type="text"
+            value={position}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPosition(e.target.value)
+            }
+            placeholder="f.eks. Keeper, Defender, Midfielder, Striker"
+            className="border p-2 rounded w-full"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="athleteNationality" className="mb-2">Nasjonalitet (valgfritt):</label>
+          <br />
+          <input
+            id="athleteNationality"
+            type="text"
+            value={nationality}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setNationality(e.target.value)
+            }
+            placeholder="f.eks. Norge, Brasil, Tyskland"
+            className="border p-2 rounded w-full"
+          />
         </div>
 
         <div className="mb-4">

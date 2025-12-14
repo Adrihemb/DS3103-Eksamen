@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {}
+    "/Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/SportsWorld.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj": {
+    "/Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/SportsWorld.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
+        "projectUniqueName": "/Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/SportsWorld.Api.csproj",
         "projectName": "SportsWorld.Api",
-        "projectPath": "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\SportsWorld.Api.csproj",
-        "packagesPath": "C:\\Users\\mathi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mathi\\Desktop\\HK\\Webutvikling\\DS3103-eksamen\\DS3103-Eksamen\\backend\\SportsWorld.Api\\obj\\",
+        "projectPath": "/Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/SportsWorld.Api.csproj",
+        "packagesPath": "/Users/emilstjernberg/.nuget/packages/",
+        "outputPath": "/Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mathi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/emilstjernberg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -82,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

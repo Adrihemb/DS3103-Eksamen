@@ -19,5 +19,9 @@ namespace SportsWorld.Api.Models
         public string Image { get; set; } = string.Empty;
 
         public bool PurchaseStatus { get; set; } = false;
+
+        public string Position { get; set; } = string.Empty;
+
+        public string Nationality { get; set; } = string.Empty;
     }
 }

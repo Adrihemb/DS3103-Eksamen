@@ -85,8 +85,8 @@ function AthleteOverviewPage() {
     .reduce((sum, a) => sum + a.price, 0);
 
   return (
-    <main className="p-4">
-      <h1 className="mb-4 text-2xl font-bold">Idrettsutøvere</h1>
+    <main className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+      <h1 className="mb-4 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg">🏆 Athletes</h1>
 
       <div className="mb-4">
         <label htmlFor="athleteSearch" className="mb-2 block">Søk etter idrettsutøver: </label>
@@ -126,21 +126,23 @@ function AthleteOverviewPage() {
               return (
                 <article
                   key={athlete.id}
-                  className="border rounded p-4 flex flex-col"
+                  className="border rounded p-4 flex flex-col bg-white shadow-md hover:shadow-lg transition-shadow duration-300"
                 >
                   {imageUrl && (
                     <img
                       src={imageUrl}
                       alt={`Bilde av ${athlete.name}`}
-                      className="w-full rounded mb-2"
+                      className="w-full rounded mb-2 object-contain"
                     />
                   )}
                   <div className="mt-auto">
-                    <h3 className="mb-2 text-lg font-bold">{athlete.name}</h3>
-                    <p className="text-base">{athlete.gender} – {athlete.price} coins</p>
-                    <p className="text-sm mb-4">
+                    <h3 className="mb-2 text-lg font-bold text-gray-800">{athlete.name}</h3>
+                    <p className="text-base text-gray-600">{athlete.gender} – {athlete.price} coins</p>
+                    {athlete.position && <p className="text-sm text-gray-600">📍 {athlete.position}</p>}
+                    {athlete.nationality && <p className="text-sm text-gray-600">🌍 {athlete.nationality}</p>}
+                    <p className="text-sm mb-4 text-gray-500 mt-2">
                       Status:{" "}
-                      <strong>
+                      <strong className="text-gray-700">
                         {athlete.purchaseStatus ? "Kjøpt" : "Tilgjengelig"}
                       </strong>
                     </p>
@@ -148,14 +150,14 @@ function AthleteOverviewPage() {
                       {!athlete.purchaseStatus ? (
                         <button
                           onClick={() => handleBuy(athlete)}
-                          className="bg-green-600 text-white px-4 py-2 rounded w-full"
+                          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full font-semibold transition-colors duration-200"
                         >
                           Kjøp
                         </button>
                       ) : (
                         <button
                           onClick={() => handleSell(athlete)}
-                          className="bg-red-600 text-white px-4 py-2 rounded w-full"
+                          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full font-semibold transition-colors duration-200"
                         >
                           Selg
                         </button>
