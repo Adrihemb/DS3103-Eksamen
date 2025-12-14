@@ -52,7 +52,7 @@ function AthleteAdmin({
 
     const priceNumber = Number(price);
     if (Number.isNaN(priceNumber) || priceNumber < 0) {
-      alert("Pris må være et gyldig tall.");
+      alert("Price must be a valid number.");
       return;
     }
 
@@ -87,11 +87,11 @@ function AthleteAdmin({
 
   return (
     <section className="p-4 border rounded">
-      <h2 className="mb-4 font-bold">{isEditing ? "Rediger Idrettsutøver" : "Legg til Ny Idrettsutøver"}</h2>
+      <h2 className="mb-4 font-bold">{isEditing ? "Edit Athlete" : "Add New Athlete"}</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="athleteName" className="mb-2">Navn:</label>
+          <label htmlFor="athleteName" className="mb-2">Name:</label>
           <br />
           <input
             id="athleteName"
@@ -106,7 +106,7 @@ function AthleteAdmin({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="athleteGender" className="mb-2">Kjønn:</label>
+          <label htmlFor="athleteGender" className="mb-2">Gender:</label>
           <br />
           <select
             id="athleteGender"
@@ -123,7 +123,7 @@ function AthleteAdmin({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="athletePrice" className="mb-2">Pris (coins):</label>
+          <label htmlFor="athletePrice" className="mb-2">Price (coins):</label>
           <br />
           <input
             id="athletePrice"
@@ -139,7 +139,7 @@ function AthleteAdmin({
         </div>
 
         <div className="mb-4">
-          <label htmlFor="athleteImage" className="mb-2">Bilde (valgfritt):</label>
+          <label htmlFor="athleteImage" className="mb-2">Image (optional):</label>
           <br />
           <input
             id="athleteImage"
@@ -156,13 +156,13 @@ function AthleteAdmin({
           />
           {image && !imageFile && (
             <p className="mb-2">
-              Nåværende bilde: <code>{image}</code>
+              Current image: <code>{image}</code>
             </p>
           )}
         </div>
 
         <div className="mb-4">
-          <label htmlFor="athletePosition" className="mb-2">Posisjon (valgfritt):</label>
+          <label htmlFor="athletePosition" className="mb-2">Position (optional):</label>
           <br />
           <input
             id="athletePosition"
@@ -171,13 +171,13 @@ function AthleteAdmin({
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setPosition(e.target.value)
             }
-            placeholder="f.eks. Keeper, Defender, Midfielder, Striker"
+            placeholder="e.g. Keeper, Defender, Midfielder, Striker"
             className="border p-2 rounded w-full"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="athleteNationality" className="mb-2">Nasjonalitet (valgfritt):</label>
+          <label htmlFor="athleteNationality" className="mb-2">Nationality (optional):</label>
           <br />
           <input
             id="athleteNationality"
@@ -186,7 +186,7 @@ function AthleteAdmin({
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNationality(e.target.value)
             }
-            placeholder="f.eks. Norge, Brasil, Tyskland"
+            placeholder="e.g. Norway, Brazil, Germany"
             className="border p-2 rounded w-full"
           />
         </div>
@@ -201,22 +201,22 @@ function AthleteAdmin({
                 setPurchaseStatus(e.target.checked)
               }
             />{" "}
-            Kjøpt
+            Purchased
           </label>
         </div>
 
         <div className="flex gap-4">
           <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-            {isEditing ? "Lagre Endringer" : "Opprett Idrettsutøver"}
+            {isEditing ? "Save Changes" : "Create Athlete"}
           </button>
 
           <button type="button" onClick={handleClearClick} className="border px-4 py-2 rounded">
-            Tøm skjema
+            Clear Form
           </button>
 
           {isEditing && (
             <button type="button" onClick={handleDeleteClick} className="bg-red-600 text-white px-4 py-2 rounded">
-              Slett Idrettsutøver
+              Delete Athlete
             </button>
           )}
         </div>

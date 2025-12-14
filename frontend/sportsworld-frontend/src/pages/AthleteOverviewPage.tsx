@@ -18,8 +18,8 @@ function AthleteOverviewPage() {
       const data = await AthleteService.getAll();
       setAthletes(data);
     } catch (err) {
-      console.error("Noe gikk galt ved henting av idrettsutøvere.", err);
-      setError("Kunne ikke hente idrettsutøvere.");
+      console.error("Failed to load athletes.", err);
+      setError("Could not load athletes.");
     } finally {
       setLoading(false);
     }
@@ -41,7 +41,7 @@ function AthleteOverviewPage() {
       );
     } catch (err) {
       console.error(err);
-      alert("Kunne ikke kjøpe idrettsutøver.");
+      alert("Could not purchase athlete.");
     }
   }
 
@@ -57,7 +57,7 @@ function AthleteOverviewPage() {
       );
     } catch (err) {
       console.error(err);
-      alert("Kunne ikke selge idrettsutøver.");
+      alert("Could not sell athlete.");
     }
   }
 
@@ -89,11 +89,11 @@ function AthleteOverviewPage() {
       <h1 className="mb-4 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg">🏆 Athletes</h1>
 
       <div className="mb-4">
-        <label htmlFor="athleteSearch" className="mb-2 block">Søk etter idrettsutøver: </label>
+        <label htmlFor="athleteSearch" className="mb-2 block">Search for athlete: </label>
         <input
           id="athleteSearch"
           type="text"
-          placeholder="Søk etter idrettsutøvere..."
+          placeholder="Search athletes..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="border p-2 rounded w-full mb-4"
@@ -103,16 +103,16 @@ function AthleteOverviewPage() {
           onChange={(e) => setFilter(e.target.value)}
           className="border p-2 rounded w-full mb-4"
         >
-          <option value="all">Alle</option>
-          <option value="available">Kun tilgjengelige</option>
-          <option value="purchased">Kun kjøpte</option>
+          <option value="all">All</option>
+          <option value="available">Available Only</option>
+          <option value="purchased">Purchased Only</option>
         </select>
         <p className="font-bold">
-          Coins brukt: {totalCoinsSpent}
+          Coins Spent: {totalCoinsSpent}
         </p>
       </div>
 
-      {loading && <p>Laster idrettsutøvere...</p>}
+      {loading && <p>Loading athletes...</p>}
       {error && <p className="text-red-600">{error}</p>}
 
       {!loading && !error && (
@@ -131,7 +131,7 @@ function AthleteOverviewPage() {
                   {imageUrl && (
                     <img
                       src={imageUrl}
-                      alt={`Bilde av ${athlete.name}`}
+                      alt={`Image of ${athlete.name}`}
                       className="w-full rounded mb-2 object-contain"
                     />
                   )}
@@ -143,7 +143,7 @@ function AthleteOverviewPage() {
                     <p className="text-sm mb-4 text-gray-500 mt-2">
                       Status:{" "}
                       <strong className="text-gray-700">
-                        {athlete.purchaseStatus ? "Kjøpt" : "Tilgjengelig"}
+                        {athlete.purchaseStatus ? "Purchased" : "Available"}
                       </strong>
                     </p>
                     <div>
@@ -152,14 +152,14 @@ function AthleteOverviewPage() {
                           onClick={() => handleBuy(athlete)}
                           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full font-semibold transition-colors duration-200"
                         >
-                          Kjøp
+                          Buy
                         </button>
                       ) : (
                         <button
                           onClick={() => handleSell(athlete)}
                           className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded w-full font-semibold transition-colors duration-200"
                         >
-                          Selg
+                          Sell
                         </button>
                       )}
                     </div>
@@ -171,7 +171,7 @@ function AthleteOverviewPage() {
 
           {filteredAthletes.length === 0 && (
             <p className="text-center mt-8">
-              Fant ingen idrettsutøvere.
+              No athletes found.
             </p>
           )}
         </>
