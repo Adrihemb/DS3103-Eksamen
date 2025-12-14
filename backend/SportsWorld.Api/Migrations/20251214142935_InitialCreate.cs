@@ -60,6 +60,11 @@ namespace SportsWorld.Api.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Finances",
+                columns: new[] { "Id", "MoneyLeft", "NumberOfPurchases", "MoneySpent" },
+                values: new object[] { 1, "1000", 0, "0" });
+
+            migrationBuilder.InsertData(
                 table: "Athletes",
                 columns: new[] { "Id", "Gender", "Image", "Name", "Price", "PurchaseStatus" },
                 values: new object[,]

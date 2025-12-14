@@ -107,6 +107,9 @@ namespace SportsWorld.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("AmountBorrowed")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("MoneyLeft")
                         .HasColumnType("TEXT");
 
