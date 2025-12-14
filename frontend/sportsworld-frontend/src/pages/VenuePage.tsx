@@ -22,8 +22,8 @@ function VenuePage() {
             const data = await VenueService.getAll();
             setVenues(data);
         } catch (err) {
-            console.error('Noe gikk galt ved henting av arenaer.', err);
-            setError('Kunne ikke hente arenaer.');
+            console.error('Something went wrong while fetching venues.', err);
+            setError('Could not fetch venues.');
         }
         finally {
             setLoading(false);
@@ -57,8 +57,8 @@ function VenuePage() {
             setVenues((prev) => [...prev, createdVenue]);
             setSelectedVenue(null);
         } catch (err) {
-            console.error('Noe gikk galt ved oppretting av arena.', err);
-            setError('Kunne ikke opprette arena.');
+            console.error('Something went wrong while creating venue.', err);
+            setError('Could not create venue.');
         }
     }
 
@@ -71,7 +71,7 @@ function VenuePage() {
             setError('');
 
             if (!venueData.id) {
-                throw new Error('Ugyldig arena-ID.');
+                throw new Error('Invalid venue ID.');
             }
 
             const finalVenueData: IVenueInput = { ...venueData };
@@ -94,8 +94,8 @@ function VenuePage() {
             ));
             setSelectedVenue(null);
         } catch (err) {
-            console.error('Noe gikk galt ved oppdatering av arena.', err);
-            setError('Kunne ikke oppdatere arena.');
+            console.error('Something went wrong while updating venue.', err);
+            setError('Could not update venue.');
         }
     }
 
@@ -103,7 +103,7 @@ function VenuePage() {
     async function handleDeleteVenue(venueId: number): Promise<void> {
         //Asks for confirmation before deliting a venue
         const shouldDelete = window.confirm(
-            'Er du sikker på at du vil slette denne arenaen?'
+            'Are you sure you want to delete this venue?'
         );
         if (!shouldDelete) return;
 
@@ -116,8 +116,8 @@ function VenuePage() {
             setVenues((prev) => prev.filter((v) => v.id !== venueId));
             setSelectedVenue(null);
         } catch (err) {
-            console.error('Noe gikk galt ved sletting av arena.', err);
-            setError('Kunne ikke slette arena.');
+            console.error('Something went wrong while deleting venue.', err);
+            setError('Could not delete venue.');
         }
     }
 
@@ -126,7 +126,7 @@ function VenuePage() {
             <h1 className="mb-4 text-2xl font-bold">Venue administration</h1>
 
             {/* Shows loading/error messages */}
-            {loading && <p>Laster arenaer...</p>}
+            {loading && <p>Loading venues...</p>}
             {error && <p className="text-red-600">{error}</p>}
         
             {/* Shows VenueList and VenueAdmin side by side */}

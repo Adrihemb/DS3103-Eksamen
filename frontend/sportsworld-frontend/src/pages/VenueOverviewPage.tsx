@@ -23,8 +23,8 @@ function VenueOverviewPage() {
       const data = await VenueService.getAll();
       setVenues(data);
     } catch (err) {
-      console.error("Noe gikk galt ved henting av arenaer.", err);
-      setError("Kunne ikke hente arenaer.");
+      console.error("Something went wrong while fetching venues.", err);
+      setError("Could not fetch venues.");
     } finally {
       setLoading(false);
     }
@@ -52,17 +52,17 @@ function VenueOverviewPage() {
 
   return (
     <main className="p-4">
-      <h1 className="mb-4 text-2xl font-bold">Arenaer</h1>
+      <h1 className="mb-4 text-2xl font-bold">Venues</h1>
 
       {/*Search input field*/}
       <div className="mb-4">
         <label htmlFor="venueSearch" className="mb-2">
-          Søk etter arena: 
+          Search for venue: 
         </label>
         <input
           id="venueSearch"
           type="text"
-          placeholder="Søk etter arenaer..."
+          placeholder="Search for venues..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="border p-2 rounded w-full"
@@ -72,28 +72,28 @@ function VenueOverviewPage() {
       {/*Sorting controls*/}
       <div className="mb-4 flex gap-4">
         <div>
-          <label htmlFor="sortBy" className="mr-2">Sorter etter:</label>
+          <label htmlFor="sortBy" className="mr-2">Sort by:</label>
           <select
             id="sortBy"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as 'name' | 'capacity')}
             className="border p-2 rounded"
           >
-            <option value="name">Navn</option>
-            <option value="capacity">Kapasitet</option>
+            <option value="name">Name</option>
+            <option value="capacity">Capacity</option>
           </select>
         </div>
 
         <div>
-          <label htmlFor="sortOrder" className="mr-2">Rekkefølge:</label>
+          <label htmlFor="sortOrder" className="mr-2">Order:</label>
           <select
             id="sortOrder"
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
             className="border p-2 rounded"
           >
-            <option value="asc">Stigende</option>
-            <option value="desc">Synkende</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
           </select>
         </div>
       </div>
@@ -111,13 +111,13 @@ function VenueOverviewPage() {
               {imageUrl && (
                 <img
                   src={imageUrl}
-                  alt={`Bilde av ${venue.name}`}
+                  alt={`Image of ${venue.name}`}
                   className="w-full rounded mb-2"
                 />
               )}
               <div className="mt-auto">
                 <h3 className="mb-2 text-lg font-bold">{venue.name}</h3>
-                <p className="text-base">Kapasitet: {venue.capacity.toLocaleString()}</p>
+                <p className="text-base">Capacity: {venue.capacity.toLocaleString()}</p>
               </div>
             </article>
           );
@@ -125,11 +125,11 @@ function VenueOverviewPage() {
       </div>
 
       {/* Shows loading/error/no results messages */}
-      {loading && <p>Laster arenaer...</p>}
+      {loading && <p>Loading venues...</p>}
       {error && <p className="text-red-600">{error}</p>}  
 
       {!loading && !error && sortedAndFilteredVenues.length === 0 && (
-        <p>Ingen arenaer funnet.</p>
+        <p>No venues found.</p>
       )}
     </main>
   );

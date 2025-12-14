@@ -40,7 +40,7 @@ function VenueAdmin({ selectedVenue, onCreateVenue, onUpdateVenue, onDeleteVenue
     //Validate capacity input is a positive number
     const capacityNumber = Number(capacity);
     if (Number.isNaN(capacityNumber) || capacityNumber <= 0) {
-      alert("Kapasitet må være et gyldig positivt tall.");
+      alert("Capacity must be a valid positive number.");
       return;
     }
 
@@ -76,12 +76,12 @@ const isEditing = !!selectedVenue;
 
 return (
     <section className="p-4 border rounded">
-        <h2 className="mb-4 font-bold">{isEditing ? "Rediger Arena" : "Legg til Ny Arena"}</h2>
+        <h2 className="mb-4 font-bold">{isEditing ? "Edit Venue" : "Add New Venue"}</h2>
 
         <form onSubmit={handleSubmit}>
             {/*Name input field*/}
             <div className="mb-4">
-                <label htmlFor="venueName" className="mb-2">Navn:</label>
+                <label htmlFor="venueName" className="mb-2">Name:</label>
                 <br />
                 <input
                     id="venueName"
@@ -97,7 +97,7 @@ return (
 
             {/*Capacity input field*/}
             <div className="mb-4">
-                <label htmlFor="venueCapacity" className="mb-2">Kapasitet:</label>
+                <label htmlFor="venueCapacity" className="mb-2">Capacity:</label>
                 <br />
                 <input
                     id="venueCapacity"
@@ -114,7 +114,7 @@ return (
 
             {/*Image file input field*/}
             <div className="mb-4">
-                <label htmlFor="venueImage" className="mb-2">Bilde (valgfritt):</label>
+                <label htmlFor="venueImage" className="mb-2">Image (optional):</label>
                 <br />
                 <input
                     id="venueImage"
@@ -131,7 +131,7 @@ return (
                 />
                 {image && !imageFile && (
                     <p className="mb-2">
-                        Nåværende bilde: <code>{image}</code>
+                        Current image: <code>{image}</code>
                     </p>
                 )}  
             </div>
@@ -139,16 +139,16 @@ return (
             {/*Action buttons (submit, clear, delete)*/}
             <div className="flex gap-4">
                 <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-                    {isEditing ? "Lagre Endringer" : "Opprett Arena"}
+                    {isEditing ? "Save Changes" : "Create Venue"}
                 </button>
 
                 <button type="button" onClick={handleClearClick} className="border px-4 py-2 rounded">
-                    Tøm skjema
+                    Clear Form
                 </button>
 
                 {isEditing && (
                     <button type="button" onClick={handleDeleteClick} className="bg-red-600 text-white px-4 py-2 rounded">
-                        Slett Arena
+                        Delete Venue
                     </button>
                 )}
             </div>

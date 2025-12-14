@@ -29,7 +29,7 @@ const VenueService = {
   async update(venue: IVenueInput): Promise<void> {
     //Ensure the venue has an ID before updating
     if (!venue.id) {
-      throw new Error("Mangler ID for venue ved oppdatering.");
+      throw new Error("Missing ID for venue when updating.");
     }
     await axios.put(`${VENUE_URL}/${venue.id}`, venue);
   },
