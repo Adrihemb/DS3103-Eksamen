@@ -32,30 +32,14 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// 🔥 Viktig: CORS før Authorization / MapControllers
+
 app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-// Seed data
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<SportsWorldContext>();
-    context.Database.EnsureCreated();
-
-    if (!context.Venues.Any())
-    {
-        context.Venues.AddRange(
-            new Venue { Name = "Wembley Stadium", Capacity = 90000, Image = "https://example.com/wembley.jpg" },
-            new Venue { Name = "Camp Nou", Capacity = 99354, Image = "https://example.com/campnou.jpg" },
-            new Venue { Name = "Old Trafford", Capacity = 74310, Image = "https://example.com/oldtrafford.jpg" }
-        );
-        context.SaveChanges();
-    }
-}
 
 app.Run();

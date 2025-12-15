@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useAthletes } from "../context/AthletesContext";
 import type { Finance } from "../types/Finance";
-import type { Athlete } from "../types/Athletes";
+import type { IAthlete } from "../types/athleteTypes";
 import {
   getFinance,
-  getAthletes,
   takeLoan,
+  repayLoan,
   purchaseAthlete,
   resetData,
 } from "../services/FinanceServices";
@@ -17,27 +18,23 @@ import {
 const FinanceDashboard: React.FC = () => {
   // State for finance data and UI
   const [finance, setFinance] = useState<Finance | null>(null);
-  const [athletes, setAthletes] = useState<Athlete[]>([]);
+  const { athletes, updateAthlete, refreshAthletes } = useAthletes();
   const [loanAmount, setLoanAmount] = useState<string>("");
+  const [repayAmount, setRepayAmount] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   /**
-   * Fetch finance and athletes data on component mount
+   * Fetch finance data on component mount
    * Runs once when component loads
    */
   useEffect(() => {
     async function load() {
       try {
-        // Fetch both finance and athlete data in parallel
-        const [financeData, athletesData] = await Promise.all([
-          getFinance(),
-          getAthletes(),
-        ]);
+        const financeData = await getFinance();
         setFinance(financeData);
-        setAthletes(athletesData);
         setLoading(false);
       } catch (err) {
         const e = err as Error;
@@ -75,6 +72,31 @@ const FinanceDashboard: React.FC = () => {
   };
 
   /**
+   * Handle loan repayment
+   * Validates input and updates finance state on success
+   */
+  const handleRepay = async () => {
+    setMessage(null);
+
+    const amountNumber = Number(repayAmount);
+    // Validate repayment amount
+    if (isNaN(amountNumber) || amountNumber <= 0) {
+      setMessage("Amount must be a positive number.");
+      return;
+    }
+
+    try {
+      const updatedFinance = await repayLoan(amountNumber);
+      setFinance(updatedFinance);
+      setRepayAmount("");
+      setMessage("Loan repaid successfully.");
+    } catch (err) {
+      const e = err as Error;
+      setMessage(e.message);
+    }
+  };
+
+  /**
    * Handle athlete purchase
    * Updates both finance and athlete list on success
    * @param athleteId - ID of the athlete to purchase
@@ -88,9 +110,7 @@ const FinanceDashboard: React.FC = () => {
 
       // Update finance and mark athlete as purchased
       setFinance(updatedFinance);
-      setAthletes((prev) =>
-        prev.map((a) => (a.id === updatedAthlete.id ? updatedAthlete : a))
-      );
+      updateAthlete(updatedAthlete);
       setMessage(`Purchased ${updatedAthlete.name}.`);
     } catch (err) {
       const e = err as Error;
@@ -103,10 +123,8 @@ const FinanceDashboard: React.FC = () => {
     setMessage(null);
     try {
       const updatedFinance = await resetData();
-      // Reload athletes and finance state
-      const athletesData = await getAthletes();
-      setAthletes(athletesData);
       setFinance(updatedFinance);
+      await refreshAthletes();
       setMessage("Data reset to default.");
     } catch (err) {
       const e = err as Error;
@@ -220,8 +238,8 @@ const FinanceDashboard: React.FC = () => {
         </div>
       </section>
 
-      {/* GRID 2: loan and purchased athletes side by side */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* GRID 2: Take loan and Repay loan side by side */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Loan-card */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <div>
@@ -250,6 +268,37 @@ const FinanceDashboard: React.FC = () => {
           </div>
         </div>
 
+        {/* Repay loan card */}
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900 mb-1">
+              Repay loan
+            </h2>
+            <p className="text-sm text-gray-500 mb-4">
+              Pay back borrowed coins. Owed: {finance.amountBorrowed}
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <input
+              type="number"
+              value={repayAmount}
+              onChange={(e) => setRepayAmount(e.target.value)}
+              placeholder="Amount"
+              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            <button
+              onClick={handleRepay}
+              className="w-full inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white hover:bg-green-700 active:bg-green-800"
+            >
+              Repay loan
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* GRID 3: Purchased athletes and Athletes not purchased side by side */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Athletes not purchased (available) */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
@@ -296,10 +345,8 @@ const FinanceDashboard: React.FC = () => {
             </ul>
           )}
         </div>
-      </section>
 
-      {/* Purchased athletes section */}
-      <section className="mt-8">
+        {/* Purchased athletes section */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">

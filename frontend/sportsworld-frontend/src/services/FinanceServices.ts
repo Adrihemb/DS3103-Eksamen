@@ -49,6 +49,15 @@ export async function takeLoan(amount: number): Promise<Finance> {
   }
 }
 
+export async function repayLoan(amount: number): Promise<Finance> {
+  try {
+    const res = await api.post<Finance>("/Finance/repay", { amount });
+    return res.data;
+  } catch (err) {
+    handleAxiosError(err);
+  }
+}
+
 export async function purchaseAthlete(
   athleteId: number
 ): Promise<{ athlete: Athlete; finance: Finance }> {

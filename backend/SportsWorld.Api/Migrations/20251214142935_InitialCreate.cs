@@ -37,7 +37,8 @@ namespace SportsWorld.Api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     MoneyLeft = table.Column<decimal>(type: "TEXT", nullable: false),
                     NumberOfPurchases = table.Column<int>(type: "INTEGER", nullable: false),
-                    MoneySpent = table.Column<decimal>(type: "TEXT", nullable: false)
+                    MoneySpent = table.Column<decimal>(type: "TEXT", nullable: false),
+                    AmountBorrowed = table.Column<decimal>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,12 +70,14 @@ namespace SportsWorld.Api.Migrations
                 columns: new[] { "Id", "Gender", "Image", "Name", "Price", "PurchaseStatus" },
                 values: new object[,]
                 {
-                    { 1, "Male", "https://example.com/messi.jpg", "Lionel Messi", 100, false },
-                    { 2, "Male", "https://example.com/ronaldo.jpg", "Cristiano Ronaldo", 95, false },
-                    { 3, "Male", "https://example.com/haaland.jpg", "Erling Haaland", 90, false },
-                    { 4, "Male", "https://example.com/mbappe.jpg", "Kylian Mbappé", 92, false },
-                    { 5, "Female", "https://example.com/ada-hegerberg.jpg", "Ada Hegerberg", 88, false },
-                    { 6, "Female", "https://example.com/alexia.jpg", "Alexia Putellas", 89, false }
+                    { 1, "Male", "finne.jpg", "Bård Finne", 100, false },
+                    { 2, "Male", "eggert.jpg", "Aron Eggert Gudmunsson", 95, false },
+                    { 3, "Male", "sande.jpg", "Mads Sande", 90, false },
+                    { 4, "Male", "ulrik.jpg", "Ulrik Mathisen", 92, false },
+                    { 5, "Male", "helland.jpg", "Eivind Helland", 88, false },
+                    { 6, "Male", "dyngeland.jpg", "Mathias Dyngeland", 89, false },
+                    { 7, "Male", "jonas.jpg", "Jonas Torsvik", 87, false },
+                    { 8, "Male", "horn.jpg", "Felix Horn Myhre", 93, false }
                 });
 
             migrationBuilder.InsertData(

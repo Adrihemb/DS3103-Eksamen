@@ -34,6 +34,14 @@ namespace SportsWorld.Api.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Price")
                         .HasColumnType("INTEGER");
 
@@ -42,7 +50,7 @@ namespace SportsWorld.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Athletes");
+                    b.ToTable("Athletes", (string)null);
 
                     b.HasData(
                         new
@@ -51,6 +59,8 @@ namespace SportsWorld.Api.Migrations
                             Gender = "Male",
                             Image = "https://example.com/messi.jpg",
                             Name = "Lionel Messi",
+                            Nationality = "",
+                            Position = "",
                             Price = 100,
                             PurchaseStatus = false
                         },
@@ -60,6 +70,8 @@ namespace SportsWorld.Api.Migrations
                             Gender = "Male",
                             Image = "https://example.com/ronaldo.jpg",
                             Name = "Cristiano Ronaldo",
+                            Nationality = "",
+                            Position = "",
                             Price = 95,
                             PurchaseStatus = false
                         },
@@ -69,6 +81,8 @@ namespace SportsWorld.Api.Migrations
                             Gender = "Male",
                             Image = "https://example.com/haaland.jpg",
                             Name = "Erling Haaland",
+                            Nationality = "",
+                            Position = "",
                             Price = 90,
                             PurchaseStatus = false
                         },
@@ -78,6 +92,8 @@ namespace SportsWorld.Api.Migrations
                             Gender = "Male",
                             Image = "https://example.com/mbappe.jpg",
                             Name = "Kylian Mbappé",
+                            Nationality = "",
+                            Position = "",
                             Price = 92,
                             PurchaseStatus = false
                         },
@@ -87,6 +103,8 @@ namespace SportsWorld.Api.Migrations
                             Gender = "Female",
                             Image = "https://example.com/ada-hegerberg.jpg",
                             Name = "Ada Hegerberg",
+                            Nationality = "",
+                            Position = "",
                             Price = 88,
                             PurchaseStatus = false
                         },
@@ -96,6 +114,8 @@ namespace SportsWorld.Api.Migrations
                             Gender = "Female",
                             Image = "https://example.com/alexia.jpg",
                             Name = "Alexia Putellas",
+                            Nationality = "",
+                            Position = "",
                             Price = 89,
                             PurchaseStatus = false
                         });
@@ -106,9 +126,6 @@ namespace SportsWorld.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("AmountBorrowed")
-                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("MoneyLeft")
                         .HasColumnType("TEXT");
@@ -121,7 +138,7 @@ namespace SportsWorld.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Finances");
+                    b.ToTable("Finances", (string)null);
                 });
 
             modelBuilder.Entity("SportsWorld.Api.Models.Venue", b =>
@@ -143,65 +160,7 @@ namespace SportsWorld.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Venues");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Capacity = 75000,
-                            Image = "old-trafford.jpg",
-                            Name = "Old Trafford"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Capacity = 54000,
-                            Image = "anfield.jpg",
-                            Name = "Anfield"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Capacity = 60000,
-                            Image = "emirates-stadium.jpg",
-                            Name = "Emirates Stadium"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Capacity = 53000,
-                            Image = "etihad-stadium.jpg",
-                            Name = "Etihad Stadium"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Capacity = 62000,
-                            Image = "tottenham-hotspur-stadium.jpg",
-                            Name = "Tottenham Hotspur Stadium"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Capacity = 62000,
-                            Image = "london-stadium.jpg",
-                            Name = "London Stadium"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Capacity = 42000,
-                            Image = "villa-park.jpg",
-                            Name = "Villa Park"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Capacity = 52000,
-                            Image = "st-james-park.jpg",
-                            Name = "St James' Park"
-                        });
+                    b.ToTable("Venues", (string)null);
                 });
 #pragma warning restore 612, 618
         }

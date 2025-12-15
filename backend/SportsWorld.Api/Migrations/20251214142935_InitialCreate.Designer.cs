@@ -52,8 +52,8 @@ namespace SportsWorld.Api.Migrations
                         {
                             Id = 1,
                             Gender = "Male",
-                            Image = "https://example.com/messi.jpg",
-                            Name = "Lionel Messi",
+                            Image = "finne.jpg",
+                            Name = "Bård Finne",
                             Price = 100,
                             PurchaseStatus = false
                         },
@@ -61,8 +61,8 @@ namespace SportsWorld.Api.Migrations
                         {
                             Id = 2,
                             Gender = "Male",
-                            Image = "https://example.com/ronaldo.jpg",
-                            Name = "Cristiano Ronaldo",
+                            Image = "mads.jpg",
+                            Name = "Mads Hansen",
                             Price = 95,
                             PurchaseStatus = false
                         },
@@ -70,8 +70,8 @@ namespace SportsWorld.Api.Migrations
                         {
                             Id = 3,
                             Gender = "Male",
-                            Image = "https://example.com/haaland.jpg",
-                            Name = "Erling Haaland",
+                            Image = "sande.jpg",
+                            Name = "Mads Sande",
                             Price = 90,
                             PurchaseStatus = false
                         },
@@ -79,27 +79,45 @@ namespace SportsWorld.Api.Migrations
                         {
                             Id = 4,
                             Gender = "Male",
-                            Image = "https://example.com/mbappe.jpg",
-                            Name = "Kylian Mbappé",
+                            Image = "ulrik.jpg",
+                            Name = "Ulrik Mathisen",
                             Price = 92,
                             PurchaseStatus = false
                         },
                         new
                         {
                             Id = 5,
-                            Gender = "Female",
-                            Image = "https://example.com/ada-hegerberg.jpg",
-                            Name = "Ada Hegerberg",
+                            Gender = "Male",
+                            Image = "helland.jpg",
+                            Name = "Eivind Helland",
                             Price = 88,
                             PurchaseStatus = false
                         },
                         new
                         {
                             Id = 6,
-                            Gender = "Female",
-                            Image = "https://example.com/alexia.jpg",
-                            Name = "Alexia Putellas",
+                            Gender = "Male",
+                            Image = "dyngeland.jpg",
+                            Name = "Mathias Dyngeland",
                             Price = 89,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Gender = "Male",
+                            Image = "jonas.jpg",
+                            Name = "Jonas Torsvik",
+                            Price = 87,
+                            PurchaseStatus = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Gender = "Male",
+                            Image = "horn.jpg",
+                            Name = "Felix Horn Myhre",
+                            Price = 93,
                             PurchaseStatus = false
                         });
                 });
@@ -118,6 +136,9 @@ namespace SportsWorld.Api.Migrations
 
                     b.Property<int>("NumberOfPurchases")
                         .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("AmountBorrowed")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

@@ -19,56 +19,112 @@ namespace SportsWorld.Api.Data
                 new Athlete
                 {
                     Id = 1,
-                    Name = "Lionel Messi",
+                    Name = "Bård Finne",
                     Gender = "Male",
                     Price = 100,
-                    Image = "https://example.com/messi.jpg",
-                    PurchaseStatus = false
+                    Image = "finne.jpg",
+                    PurchaseStatus = false,
+                    Position = "Goalkeeper",
+                    Nationality = "Norway"
                 },
                 new Athlete
                 {
                     Id = 2,
-                    Name = "Cristiano Ronaldo",
+                    Name = "Aron Eggert Gudmunsson",
                     Gender = "Male",
                     Price = 95,
-                    Image = "https://example.com/ronaldo.jpg",
-                    PurchaseStatus = false
+                    Image = "eggert.jpg",
+                    PurchaseStatus = false,
+                    Position = "Defender",
+                    Nationality = "Iceland"
                 },
                 new Athlete
                 {
                     Id = 3,
-                    Name = "Erling Haaland",
+                    Name = "Mads Sande",
                     Gender = "Male",
                     Price = 90,
-                    Image = "https://example.com/haaland.jpg",
-                    PurchaseStatus = false
+                    Image = "sande.jpg",
+                    PurchaseStatus = false,
+                    Position = "Midfielder",
+                    Nationality = "Norway"
                 },
                 new Athlete
                 {
                     Id = 4,
-                    Name = "Kylian Mbappé",
+                    Name = "Ulrik Mathisen",
                     Gender = "Male",
                     Price = 92,
-                    Image = "https://example.com/mbappe.jpg",
-                    PurchaseStatus = false
+                    Image = "ulrik.jpg",
+                    PurchaseStatus = false,
+                    Position = "Forward",
+                    Nationality = "Norway"
                 },
                 new Athlete
                 {
                     Id = 5,
-                    Name = "Ada Hegerberg",
-                    Gender = "Female",
+                    Name = "Eivind Helland",
+                    Gender = "Male",
                     Price = 88,
-                    Image = "https://example.com/ada-hegerberg.jpg",
-                    PurchaseStatus = false
+                    Image = "helland.jpg",
+                    PurchaseStatus = false,
+                    Position = "Defender",
+                    Nationality = "Norway"
                 },
                 new Athlete
                 {
                     Id = 6,
-                    Name = "Alexia Putellas",
-                    Gender = "Female",
+                    Name = "Mathias Dyngeland",
+                    Gender = "Male",
                     Price = 89,
-                    Image = "https://example.com/alexia.jpg",
-                    PurchaseStatus = false
+                    Image = "dyngeland.jpg",
+                    PurchaseStatus = false,
+                    Position = "Midfielder",
+                    Nationality = "Norway"
+                },
+                new Athlete
+                {
+                    Id = 7,
+                    Name = "Jonas Torsvik",
+                    Gender = "Male",
+                    Price = 87,
+                    Image = "jonas.jpg",
+                    PurchaseStatus = false,
+                    Position = "Forward",
+                    Nationality = "Norway"
+                },
+                new Athlete
+                {
+                    Id = 8,
+                    Name = "Felix Horn Myhre",
+                    Gender = "Male",
+                    Price = 93,
+                    Image = "horn.jpg",
+                    PurchaseStatus = false,
+                    Position = "Defender",
+                    Nationality = "Norway"
+                },
+                new Athlete
+                {
+                    Id = 9,
+                    Name = "Oskar De Roewe",
+                    Gender = "Male",
+                    Price = 85,
+                    Image = "deroeve.jpg",
+                    PurchaseStatus = false,
+                    Position = "Forward",
+                    Nationality = "Norway"
+                },
+                new Athlete
+                {
+                    Id = 10,
+                    Name = "Sverre Holm",
+                    Gender = "Male",
+                    Price = 91,
+                    Image = "holm.jpg",
+                    PurchaseStatus = false,
+                    Position = "Midfielder",
+                    Nationality = "Norway"
                 }
             );
 

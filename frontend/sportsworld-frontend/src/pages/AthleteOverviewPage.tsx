@@ -1,43 +1,22 @@
 import { useEffect, useState } from "react";
+import { useAthletes } from "../context/AthletesContext";
+import { purchaseAthlete } from "../services/FinanceServices";
 import AthleteService from "../services/AthleteService";
 import type { IAthlete } from "../types/athleteTypes";
 import { IMAGE_URL } from "../global";
 
 function AthleteOverviewPage() {
-  const [athletes, setAthletes] = useState<IAthlete[]>([]);
+  const { athletes, loading, error, updateAthlete } = useAthletes();
   const [search, setSearch] = useState<string>("");
   const [filter, setFilter] = useState<string>("all");
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  async function loadAthletes(): Promise<void> {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await AthleteService.getAll();
-      setAthletes(data);
-    } catch (err) {
-      console.error("Failed to load athletes.", err);
-      setError("Could not load athletes.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    void loadAthletes();
-  }, []);
 
   async function handleBuy(athlete: IAthlete): Promise<void> {
     if (athlete.purchaseStatus) return;
 
-    const updatedAthlete = { ...athlete, purchaseStatus: true };
-
     try {
-      await AthleteService.update(updatedAthlete);
-      setAthletes((prev) =>
-        prev.map((a) => (a.id === athlete.id ? updatedAthlete : a))
-      );
+      const result = await purchaseAthlete(athlete.id);
+      const { athlete: updatedAthlete } = result;
+      updateAthlete(updatedAthlete);
     } catch (err) {
       console.error(err);
       alert("Could not purchase athlete.");
@@ -51,9 +30,7 @@ function AthleteOverviewPage() {
 
     try {
       await AthleteService.update(updatedAthlete);
-      setAthletes((prev) =>
-        prev.map((a) => (a.id === athlete.id ? updatedAthlete : a))
-      );
+      updateAthlete(updatedAthlete);
     } catch (err) {
       console.error(err);
       alert("Could not sell athlete.");
@@ -86,7 +63,7 @@ function AthleteOverviewPage() {
 
   return (
     <main className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-      <h1 className="mb-4 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg">🏆 Athletes</h1>
+      <h1 className="mb-4 text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg">Athletes</h1>
 
       <div className="mb-4">
         <label htmlFor="athleteSearch" className="mb-2 block">Search for athlete: </label>
@@ -138,8 +115,8 @@ function AthleteOverviewPage() {
                   <div className="mt-auto">
                     <h3 className="mb-2 text-lg font-bold text-gray-800">{athlete.name}</h3>
                     <p className="text-base text-gray-600">{athlete.gender} – {athlete.price} coins</p>
-                    {athlete.position && <p className="text-sm text-gray-600">📍 {athlete.position}</p>}
-                    {athlete.nationality && <p className="text-sm text-gray-600">🌍 {athlete.nationality}</p>}
+                    {athlete.position && <p className="text-sm text-gray-600">Position: {athlete.position}</p>}
+                    {athlete.nationality && <p className="text-sm text-gray-600">Nationality: {athlete.nationality}</p>}
                     <p className="text-sm mb-4 text-gray-500 mt-2">
                       Status:{" "}
                       <strong className="text-gray-700">

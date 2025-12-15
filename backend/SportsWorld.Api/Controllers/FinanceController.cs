@@ -16,14 +16,14 @@ namespace SportsWorld.Api.Controllers
             _context = context;
         }
 
-        // Hjelpemetode for å hente den ene Finance-raden
+        // method to retrieve the single Finance row
         private async Task<Finance?> GetSingleFinanceAsync()
         {
             return await _context.Finances.FirstOrDefaultAsync();
         }
 
         // GET: api/finance
-        // Returnerer den ene Finance-raden (eller 404 hvis den ikke finnes)
+        // Returns the single Finance row (or 404 if it doesn't exist)
         [HttpGet]
         public async Task<ActionResult<Finance>> GetFinance()
         {
@@ -52,11 +52,11 @@ namespace SportsWorld.Api.Controllers
         }
 
         // POST: api/finance
-        // Oppretter den ene Finance-raden (kjør dette én gang)
+        // Creates the single Finance row (run this once)
         [HttpPost]
         public async Task<ActionResult<Finance>> CreateFinance([FromBody] Finance finance)
         {
-            // For sikkerhets skyld: ikke la dem lage flere rader
+            // For safety: don't allow creating multiple rows
             var existing = await GetSingleFinanceAsync();
             if (existing != null)
             {
@@ -131,6 +131,45 @@ namespace SportsWorld.Api.Controllers
             // Add loan amount to both MoneyLeft and AmountBorrowed (debt tracking)
             finance.MoneyLeft += request.Amount;
             finance.AmountBorrowed += request.Amount;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(finance);
+        }
+
+        // POST: api/finance/repay
+        // Body: { "amount": 50000 }
+        public class RepayRequest
+        {
+            public decimal Amount { get; set; }
+        }
+
+        [HttpPost("repay")]
+        public async Task<ActionResult<Finance>> RepayLoan([FromBody] RepayRequest request)
+        {
+            if (request.Amount <= 0)
+            {
+                return BadRequest("Repayment amount must be positive.");
+            }
+
+            var finance = await GetSingleFinanceAsync();
+            if (finance == null)
+            {
+                return BadRequest("Finance row does not exist.");
+            }
+
+            if (request.Amount > finance.AmountBorrowed)
+            {
+                return BadRequest($"Cannot repay more than borrowed amount. Current debt: {finance.AmountBorrowed}");
+            }
+
+            if (request.Amount > finance.MoneyLeft)
+            {
+                return BadRequest($"Insufficient funds. Available: {finance.MoneyLeft}");
+            }
+
+            finance.MoneyLeft -= request.Amount;
+            finance.AmountBorrowed -= request.Amount;
 
             await _context.SaveChangesAsync();
 
