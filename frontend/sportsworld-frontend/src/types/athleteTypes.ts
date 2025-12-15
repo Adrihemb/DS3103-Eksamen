@@ -5,6 +5,8 @@ export interface IAthlete {
   price: number;
   image?: string | null;
   purchaseStatus: boolean;
+  position?: string;
+  nationality?: string;
 }
 
 export interface IAthleteInput {
@@ -14,4 +16,6 @@ export interface IAthleteInput {
   price: number;
   image?: string | null;
   purchaseStatus: boolean;
+  position?: string;
+  nationality?: string;
 }

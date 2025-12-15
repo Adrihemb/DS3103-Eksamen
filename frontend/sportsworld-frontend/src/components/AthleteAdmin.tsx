@@ -22,6 +22,8 @@ function AthleteAdmin({
   const [image, setImage] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [purchaseStatus, setPurchaseStatus] = useState<boolean>(false);
+  const [position, setPosition] = useState<string>("");
+  const [nationality, setNationality] = useState<string>("");
 
   useEffect(() => {
     if (selectedAthlete) {
@@ -31,6 +33,8 @@ function AthleteAdmin({
       setImage(selectedAthlete.image ?? "");
       setImageFile(null);
       setPurchaseStatus(selectedAthlete.purchaseStatus);
+      setPosition(selectedAthlete.position ?? "");
+      setNationality(selectedAthlete.nationality ?? "");
     } else {
       setName("");
       setGender("Male");
@@ -38,6 +42,8 @@ function AthleteAdmin({
       setImage("");
       setImageFile(null);
       setPurchaseStatus(false);
+      setPosition("");
+      setNationality("");
     }
   }, [selectedAthlete]);
 
@@ -46,7 +52,7 @@ function AthleteAdmin({
 
     const priceNumber = Number(price);
     if (Number.isNaN(priceNumber) || priceNumber < 0) {
-      alert("Pris må være et gyldig tall.");
+      alert("Price must be a valid number.");
       return;
     }
 
@@ -57,6 +63,8 @@ function AthleteAdmin({
       price: priceNumber,
       image: image.trim(),
       purchaseStatus,
+      position: position.trim(),
+      nationality: nationality.trim(),
     };
 
     if (selectedAthlete) {
@@ -78,12 +86,12 @@ function AthleteAdmin({
   const isEditing = !!selectedAthlete;
 
   return (
-    <section className="athlete-panel">
-      <h2>{isEditing ? "Rediger Idrettsutøver" : "Legg til Ny Idrettsutøver"}</h2>
+    <section className="p-4 border rounded">
+      <h2 className="mb-4 font-bold">{isEditing ? "Edit Athlete" : "Add New Athlete"}</h2>
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athleteName">Navn:</label>
+        <div className="mb-4">
+          <label htmlFor="athleteName" className="mb-2">Name:</label>
           <br />
           <input
             id="athleteName"
@@ -93,11 +101,12 @@ function AthleteAdmin({
               setName(e.target.value)
             }
             required
+            className="border p-2 rounded w-full"
           />
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athleteGender">Kjønn:</label>
+        <div className="mb-4">
+          <label htmlFor="athleteGender" className="mb-2">Gender:</label>
           <br />
           <select
             id="athleteGender"
@@ -105,6 +114,7 @@ function AthleteAdmin({
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setGender(e.target.value)
             }
+            className="border p-2 rounded w-full"
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -112,8 +122,8 @@ function AthleteAdmin({
           </select>
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athletePrice">Pris (coins):</label>
+        <div className="mb-4">
+          <label htmlFor="athletePrice" className="mb-2">Price (coins):</label>
           <br />
           <input
             id="athletePrice"
@@ -124,11 +134,12 @@ function AthleteAdmin({
             }
             min="0"
             required
+            className="border p-2 rounded w-full"
           />
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="athleteImage">Bilde (valgfritt):</label>
+        <div className="mb-4">
+          <label htmlFor="athleteImage" className="mb-2">Image (optional):</label>
           <br />
           <input
             id="athleteImage"
@@ -141,15 +152,46 @@ function AthleteAdmin({
                 setImage(file.name);
               }
             }}
+            className="border p-2 rounded w-full"
           />
           {image && !imageFile && (
-            <p style={{ marginTop: "0.5rem" }}>
-              Nåværende bilde: <code>{image}</code>
+            <p className="mb-2">
+              Current image: <code>{image}</code>
             </p>
           )}
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
+        <div className="mb-4">
+          <label htmlFor="athletePosition" className="mb-2">Position (optional):</label>
+          <br />
+          <input
+            id="athletePosition"
+            type="text"
+            value={position}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPosition(e.target.value)
+            }
+            placeholder="e.g. Keeper, Defender, Midfielder, Striker"
+            className="border p-2 rounded w-full"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="athleteNationality" className="mb-2">Nationality (optional):</label>
+          <br />
+          <input
+            id="athleteNationality"
+            type="text"
+            value={nationality}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setNationality(e.target.value)
+            }
+            placeholder="e.g. Norway, Brazil, Germany"
+            className="border p-2 rounded w-full"
+          />
+        </div>
+
+        <div className="mb-4">
           <label htmlFor="athletePurchaseStatus">
             <input
               id="athletePurchaseStatus"
@@ -159,22 +201,22 @@ function AthleteAdmin({
                 setPurchaseStatus(e.target.checked)
               }
             />{" "}
-            Kjøpt
+            Purchased
           </label>
         </div>
 
-        <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button type="submit">
-            {isEditing ? "Oppdater" : "Lag"}
+        <div className="flex gap-4">
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+            {isEditing ? "Save Changes" : "Create Athlete"}
           </button>
+
+          <button type="button" onClick={handleClearClick} className="border px-4 py-2 rounded">
+            Clear Form
+          </button>
+
           {isEditing && (
-            <button type="button" onClick={handleDeleteClick}>
-              Slett
-            </button>
-          )}
-          {isEditing && (
-            <button type="button" onClick={handleClearClick}>
-              Avbryt
+            <button type="button" onClick={handleDeleteClick} className="bg-red-600 text-white px-4 py-2 rounded">
+              Delete Athlete
             </button>
           )}
         </div>

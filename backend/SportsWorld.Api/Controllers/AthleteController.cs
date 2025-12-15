@@ -57,7 +57,7 @@ namespace SportsWorld.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Athlete>> PostAthlete(Athlete athlete)
         {
-            // Nye utøvere skal være "ikke kjøpt" som default
+            // New athletes are not purchased by default
             athlete.PurchaseStatus = false;
 
             _context.Athletes.Add(athlete);
@@ -67,7 +67,6 @@ namespace SportsWorld.Api.Controllers
         }
 
         // PUT: api/Athlete/5
-        // Brukes både til å redigere og "kjøpe" (purchaseStatus true)
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAthlete(int id, Athlete athlete)
         {
@@ -113,11 +112,14 @@ namespace SportsWorld.Api.Controllers
             return NoContent();
         }
         
-        // POST: api/athlete/5/purchase
+        /// <summary>
+        /// POST: api/Athlete/{id}/purchase
+        /// Purchase an athlete and update finance records
+        /// </summary>
         [HttpPost("{id:int}/purchase")]
         public async Task<ActionResult> PurchaseAthlete(int id)
         {
-            // Finn athlete
+            // Find the athlete
             var athlete = await _context.Athletes.FindAsync(id);
             if (athlete == null)
             {
@@ -129,7 +131,7 @@ namespace SportsWorld.Api.Controllers
                 return BadRequest("Athlete is already purchased.");
             }
 
-            // Finn Finance (den ene raden)
+            // Find Finance record (only one exists)
             var finance = await _context.Finances.FirstOrDefaultAsync();
             if (finance == null)
             {
@@ -141,22 +143,15 @@ namespace SportsWorld.Api.Controllers
                 return BadRequest("Not enough money to purchase this athlete.");
             }
 
-            // Oppdater økonomi
+            // Update finance and athlete
             finance.MoneyLeft -= athlete.Price;
             finance.MoneySpent += athlete.Price;
             finance.NumberOfPurchases += 1;
-
-            // Oppdater athlete
             athlete.PurchaseStatus = true;
 
             await _context.SaveChangesAsync();
 
-            // Returner både ny athlete og oppdatert finance hvis du vil
-            return Ok(new
-            {
-                athlete,
-                finance
-            });
+            return Ok(new { athlete, finance });
         }
 
         private bool AthleteExists(int id)

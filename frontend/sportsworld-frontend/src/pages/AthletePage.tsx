@@ -15,12 +15,11 @@ function AthletePage() {
     try {
       setLoading(true);
       setError("");
-
       const data = await AthleteService.getAll();
       setAthletes(data);
     } catch (err) {
-      console.error("Noe gikk galt ved henting av idrettsutøvere.", err);
-      setError("Kunne ikke hente idrettsutøvere.");
+      console.error("Failed to load athletes.", err);
+      setError("Could not load athletes.");
     } finally {
       setLoading(false);
     }
@@ -45,12 +44,11 @@ function AthletePage() {
       }
 
       const createdAthlete = await AthleteService.create(finalAthleteData);
-
       setAthletes((prev) => [...prev, createdAthlete]);
       setSelectedAthlete(null);
     } catch (err) {
-      console.error("Noe gikk galt ved oppretting av idrettsutøver.", err);
-      setError("Kunne ikke opprette idrettsutøver.");
+      console.error("Failed to create athlete.", err);
+      setError("Could not create athlete.");
     }
   }
 
@@ -62,7 +60,7 @@ function AthletePage() {
       setError("");
 
       if (!athleteData.id) {
-        throw new Error("Ugyldig idrettsutøver-ID.");
+        throw new Error("Invalid athlete ID.");
       }
 
       const finalAthleteData: IAthleteInput = { ...athleteData };
@@ -90,51 +88,53 @@ function AthletePage() {
       );
       setSelectedAthlete(null);
     } catch (err) {
-      console.error("Noe gikk galt ved oppdatering av idrettsutøver.", err);
-      setError("Kunne ikke oppdatere idrettsutøver.");
+      console.error("Failed to update athlete.", err);
+      setError("Could not update athlete.");
     }
   }
 
   async function handleDeleteAthlete(athleteId: number): Promise<void> {
     const shouldDelete = window.confirm(
-      "Er du sikker på at du vil slette denne idrettsutøveren?"
+      "Are you sure you want to delete this athlete?"
     );
     if (!shouldDelete) return;
 
     try {
       setError("");
-
       await AthleteService.remove(athleteId);
-
       setAthletes((prev) => prev.filter((a) => a.id !== athleteId));
       setSelectedAthlete(null);
     } catch (err) {
-      console.error("Noe gikk galt ved sletting av idrettsutøver.", err);
-      setError("Kunne ikke slette idrettsutøver.");
+      console.error("Failed to delete athlete.", err);
+      setError("Could not delete athlete.");
     }
   }
 
   return (
-    <main style={{ padding: "1rem" }}>
-      <h1>Idrettsutøver administrasjon</h1>
+    <main className="p-4">
+      <h1 className="mb-4 text-2xl font-bold">Athlete Management</h1>
 
-      {loading && <p>Laster idrettsutøvere...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {loading && <p>Loading athletes...</p>}
+      {error && <p className="text-red-600">{error}</p>}
 
       {!loading && (
-        <div className="athlete-layout">
-          <AthleteList
-            athletes={athletes}
-            onSelectAthlete={setSelectedAthlete}
-          />
+        <div className="flex gap-4 w-full">
+          <div className="flex-1">
+            <AthleteList
+              athletes={athletes}
+              onSelectAthlete={setSelectedAthlete}
+            />
+          </div>
 
-          <AthleteAdmin
-            selectedAthlete={selectedAthlete}
-            onCreateAthlete={handleCreateAthlete}
-            onUpdateAthlete={handleUpdateAthlete}
-            onDeleteAthlete={handleDeleteAthlete}
-            onClearSelection={() => setSelectedAthlete(null)}
-          />
+          <div className="flex-1">
+            <AthleteAdmin
+              selectedAthlete={selectedAthlete}
+              onCreateAthlete={handleCreateAthlete}
+              onUpdateAthlete={handleUpdateAthlete}
+              onDeleteAthlete={handleDeleteAthlete}
+              onClearSelection={() => setSelectedAthlete(null)}
+            />
+          </div>
         </div>
       )}
     </main>

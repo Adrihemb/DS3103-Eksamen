@@ -1,5 +1,4 @@
 import type { IAthlete } from "../types/athleteTypes";
-import { IMAGE_URL } from "../global";
 
 interface AthleteListProps {
   athletes: IAthlete[];
@@ -8,30 +7,19 @@ interface AthleteListProps {
 
 function AthleteList({ athletes, onSelectAthlete }: AthleteListProps) {
   if (athletes.length === 0) {
-    return <p>Ingen idrettsutøvere funnet.</p>;
+    return <p>No athletes found.</p>;
   }
 
   return (
-    <div className="athlete-list">
-      <h2>Idrettsutøvere</h2>
+    <div className="p-4 border rounded">
+      <h2 className="mb-4 font-bold">Athletes</h2>
       <ul>
         {athletes.map((athlete) => (
-          <li key={athlete.id}>
-            <button type="button" onClick={() => onSelectAthlete(athlete)}>
-              {athlete.image && (
-                <img
-                  src={`${IMAGE_URL}/athletes/${athlete.image}`}
-                  alt={athlete.name}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    marginRight: "0.5rem",
-                    objectFit: "cover",
-                  }}
-                />
-              )}
+          <li key={athlete.id} className="mb-2">
+            <button type="button" onClick={() => onSelectAthlete(athlete)} className="border p-2 rounded w-full text-left">
               <strong>{athlete.name}</strong> – {athlete.gender} – {athlete.price} coins
+              {athlete.position && <p className="text-sm text-gray-600">Position: {athlete.position}</p>}
+              {athlete.nationality && <p className="text-sm text-gray-600">Nationality: {athlete.nationality}</p>}
             </button>
           </li>
         ))}
