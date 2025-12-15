@@ -394,3 +394,4 @@ C:/Users/mathi/Desktop/HK/Webutvikling/DS3103-eksamen/DS3103-Eksamen/backend/Spo
 /Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/obj/Debug/net9.0/SportsWorld.Api.pdb
 /Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/obj/Debug/net9.0/SportsWorld.Api.genruntimeconfig.cache
 /Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/obj/Debug/net9.0/ref/SportsWorld.Api.dll
+/Users/emilstjernberg/Downloads/nåda/backend/SportsWorld.Api/obj/Debug/net9.0/compressed/qcz2m650gw-576q1eutjr.gz
