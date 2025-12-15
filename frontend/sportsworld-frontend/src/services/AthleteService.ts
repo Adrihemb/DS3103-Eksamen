@@ -22,7 +22,7 @@ const AthleteService = {
 
   async update(athlete: IAthleteInput): Promise<void> {
     if (!athlete.id) {
-      throw new Error("Mangler ID for athlete ved oppdatering.");
+      throw new Error("Missing ID for athlete update.");
     }
     await axios.put(`${ATHLETE_URL}/${athlete.id}`, athlete);
   },
